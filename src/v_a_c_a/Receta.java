@@ -9,13 +9,13 @@ public class Receta {
     private String ingredientes;
     private String cuerpo;
     private boolean sinTACC;
-    private String categoria;
+    private int categoria;
     private ArrayList<String> ingredientePpal;
     private TipoDeComida tipoComida;
-    private FormaDeCoccion formaCoccion;
+    private FormaDeCoccion formaDeCoccion;
     private ArrayList<String> tipoDeCocina;
 
-    public Receta(String titulo, String ingredientes, String cuerpo, boolean sinTACC, String categoria, ArrayList<String> ingredientePpal, TipoDeComida tipoComida, FormaDeCoccion formaCoccion, ArrayList<String> tipoDeCocina) {
+    public Receta(String titulo, String ingredientes, String cuerpo, boolean sinTACC, int categoria, ArrayList<String> ingredientePpal, TipoDeComida tipoComida, FormaDeCoccion formaCoccion, ArrayList<String> tipoDeCocina) {
         this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.cuerpo = cuerpo;
@@ -23,7 +23,7 @@ public class Receta {
         this.categoria = categoria;
         this.ingredientePpal = ingredientePpal;
         this.tipoComida = tipoComida;
-        this.formaCoccion = formaCoccion;
+        this.formaDeCoccion = formaCoccion;
         this.tipoDeCocina = tipoDeCocina;
     }
 
@@ -59,11 +59,11 @@ public class Receta {
         this.sinTACC = sinTACC;
     }
 
-    public String getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
@@ -84,11 +84,11 @@ public class Receta {
     }
 
     public FormaDeCoccion getFormaCoccion() {
-        return formaCoccion;
+        return formaDeCoccion;
     }
 
     public void setFormaCoccion(FormaDeCoccion formaCoccion) {
-        this.formaCoccion = formaCoccion;
+        this.formaDeCoccion = formaCoccion;
     }
 
     public ArrayList<String> getTipoDeCocina() {
