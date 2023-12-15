@@ -1,5 +1,5 @@
 
-package V_A_C_A_DATA;
+package AccesoADatos;
 
 import java.sql.*;
 import javax.swing.JOptionPane;

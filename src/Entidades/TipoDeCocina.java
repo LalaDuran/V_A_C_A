@@ -1,5 +1,5 @@
 
-package v_a_c_a;
+package Entidades;
 
 public enum TipoDeCocina {
 
