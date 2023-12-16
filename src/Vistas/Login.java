@@ -1,8 +1,13 @@
 
 package Vistas;
 
+import javafx.scene.paint.Color;
+
 public class Login extends javax.swing.JFrame {
 
+    //Defino dos variables que identificarán la posición del cursor del mouse para poder arrastrar la ventana
+    int xMouse,yMouse;
+    
     public Login() {
         initComponents();
         
@@ -23,30 +28,195 @@ public class Login extends javax.swing.JFrame {
     private void initComponents() {
 
         background = new javax.swing.JPanel();
+        jpCabecera = new javax.swing.JPanel();
+        jlExit = new javax.swing.JLabel();
         jlLogo = new javax.swing.JLabel();
         jlFotoCortada = new javax.swing.JLabel();
+        jlIniciarSesion = new javax.swing.JLabel();
+        jlContrasenia = new javax.swing.JLabel();
+        jlUsuario = new javax.swing.JLabel();
+        jSeparador1 = new javax.swing.JSeparator();
+        jtfUsuario = new javax.swing.JTextField();
+        jSeparador2 = new javax.swing.JSeparator();
+        jpfContrasenia = new javax.swing.JPasswordField();
+        jbEntrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(800, 500));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         background.setBackground(new java.awt.Color(255, 255, 255));
         background.setForeground(new java.awt.Color(153, 0, 153));
         background.setMaximumSize(new java.awt.Dimension(860, 610));
+        background.setName("Login"); // NOI18N
         background.setPreferredSize(new java.awt.Dimension(860, 600));
         background.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jpCabecera.setBackground(new java.awt.Color(51, 51, 51));
+        jpCabecera.setForeground(new java.awt.Color(51, 51, 51));
+        jpCabecera.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jpCabeceraMouseDragged(evt);
+            }
+        });
+        jpCabecera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpCabeceraMousePressed(evt);
+            }
+        });
+        jpCabecera.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jlExit.setBackground(new java.awt.Color(255, 153, 0));
+        jlExit.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        jlExit.setForeground(new java.awt.Color(0, 0, 0));
+        jlExit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlExit.setText("X");
+        jlExit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlExit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jlExit.setOpaque(true);
+        jlExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlExitMouseExited(evt);
+            }
+        });
+        jpCabecera.add(jlExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 70, 60));
+
+        background.add(jpCabecera, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 60));
+
         jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo (1).png"))); // NOI18N
-        background.add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, 180, 230));
+        background.add(jlLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 70, 180, 230));
 
         jlFotoCortada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ver-arriba-verduras-mesa-madera 1 chiquitita (1).png"))); // NOI18N
         jlFotoCortada.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        background.add(jlFotoCortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 360, 600));
+        background.add(jlFotoCortada, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 360, 600));
+
+        jlIniciarSesion.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
+        jlIniciarSesion.setForeground(new java.awt.Color(0, 0, 0));
+        jlIniciarSesion.setText("INICIAR SESIÓN");
+        background.add(jlIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
+
+        jlContrasenia.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
+        jlContrasenia.setForeground(new java.awt.Color(0, 0, 0));
+        jlContrasenia.setText("CONTRASEÑA");
+        background.add(jlContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 60));
+
+        jlUsuario.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
+        jlUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        jlUsuario.setText("USUARIO");
+        background.add(jlUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, 60));
+        background.add(jSeparador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 390, 50));
+
+        jtfUsuario.setBackground(new java.awt.Color(255, 255, 255));
+        jtfUsuario.setForeground(new java.awt.Color(153, 153, 153));
+        jtfUsuario.setText("Ingrese el nombre de usuario");
+        jtfUsuario.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jtfUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jtfUsuarioMousePressed(evt);
+            }
+        });
+        background.add(jtfUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 390, 60));
+        background.add(jSeparador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 390, 50));
+
+        jpfContrasenia.setBackground(new java.awt.Color(255, 255, 255));
+        jpfContrasenia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jpfContrasenia.setForeground(new java.awt.Color(153, 153, 153));
+        jpfContrasenia.setText("************");
+        jpfContrasenia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jpfContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jpfContraseniaMousePressed(evt);
+            }
+        });
+        background.add(jpfContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 390, 60));
+
+        jbEntrar.setBackground(new java.awt.Color(153, 0, 153));
+        jbEntrar.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
+        jbEntrar.setForeground(new java.awt.Color(255, 255, 255));
+        jbEntrar.setText("ENTRAR");
+        jbEntrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jbEntrarMouseClicked(evt);
+            }
+        });
+        background.add(jbEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 140, 80));
 
         getContentPane().add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jpCabeceraMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCabeceraMousePressed
+        //Le doy los valores a x e y 
+        xMouse = evt.getX();
+        yMouse = evt.getY();
+    }//GEN-LAST:event_jpCabeceraMousePressed
+
+    private void jpCabeceraMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCabeceraMouseDragged
+        //Definimos dos variables que identifican la posición en pantalla
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();        
+        //Establecemos por diferencia para que el movimiento sea fluido
+        this.setLocation(x - xMouse,y - yMouse); 
+    }//GEN-LAST:event_jpCabeceraMouseDragged
+
+    private void jlExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlExitMouseClicked
+        //Invisibiliza, deselecciona y cierra la ventana
+        this.dispose();
+        System.exit(0);
+    }//GEN-LAST:event_jlExitMouseClicked
+
+    private void jlExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlExitMouseEntered
+        // Seteamos color violeta si se acerca el mouse
+       jlExit.setBackground(java.awt.Color.magenta);
+       jlExit.setForeground(java.awt.Color.white);
+    }//GEN-LAST:event_jlExitMouseEntered
+
+    private void jlExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlExitMouseExited
+        // Seteamos la vuelta al naranja cuando el mouse se aleja
+        jlExit.setBackground(java.awt.Color.orange);
+        jlExit.setForeground(java.awt.Color.black);
+    }//GEN-LAST:event_jlExitMouseExited
+
+    private void jtfUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfUsuarioMousePressed
+        // Establece los campos por defecto
+        if (jtfUsuario.getText().equals("Ingrese el nombre de usuario")){
+            jtfUsuario.setText("");
+            jtfUsuario.setForeground(java.awt.Color.black);
+        }
+        if (String.valueOf(jpfContrasenia.getPassword()).isEmpty()){
+            jpfContrasenia.setText("************");
+            jpfContrasenia.setForeground(java.awt.Color.gray);
+        }    
+        
+    }//GEN-LAST:event_jtfUsuarioMousePressed
+
+    private void jpfContraseniaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpfContraseniaMousePressed
+        // Establece los campos por defecto
+        if (String.valueOf(jpfContrasenia.getPassword()).equals("************")){
+            jpfContrasenia.setText("");
+            jpfContrasenia.setForeground(java.awt.Color.black);
+        }
+        if (jtfUsuario.getText().isEmpty()){
+            jtfUsuario.setText("Ingrese el nombre de usuario");
+            jtfUsuario.setForeground(java.awt.Color.gray);
+        }     
+        
+    }//GEN-LAST:event_jpfContraseniaMousePressed
+
+    private void jbEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbEntrarMouseClicked
+        // Pantalla de confirmación de usuario y contraseña
+        javax.swing.JOptionPane.showMessageDialog(this, "Usuario: " + jtfUsuario.getText() + "\nContraseña: " + String.valueOf(jpfContrasenia.getPassword()),"Login",1);
+    }//GEN-LAST:event_jbEntrarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -85,7 +255,17 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
+    private javax.swing.JSeparator jSeparador1;
+    private javax.swing.JSeparator jSeparador2;
+    private javax.swing.JButton jbEntrar;
+    private javax.swing.JLabel jlContrasenia;
+    private javax.swing.JLabel jlExit;
     private javax.swing.JLabel jlFotoCortada;
+    private javax.swing.JLabel jlIniciarSesion;
     private javax.swing.JLabel jlLogo;
+    private javax.swing.JLabel jlUsuario;
+    private javax.swing.JPanel jpCabecera;
+    private javax.swing.JPasswordField jpfContrasenia;
+    private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
 }
