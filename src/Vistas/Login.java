@@ -1,8 +1,6 @@
 
 package Vistas;
 
-import javafx.scene.paint.Color;
-
 public class Login extends javax.swing.JFrame {
 
     //Defino dos variables que identificarán la posición del cursor del mouse para poder arrastrar la ventana
@@ -43,7 +41,6 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
