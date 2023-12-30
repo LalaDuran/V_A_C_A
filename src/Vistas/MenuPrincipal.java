@@ -15,6 +15,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
    
     public MenuPrincipal() {
         initComponents();
+        this.setResizable(true);
         
         //Establece el tono violeta del panel de menúes y de los botones
         jpMenu.setBackground(violeta);
@@ -25,6 +26,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("'Hoy es 'EEEE dd' de 'MMMM' de 'yyyy"); //formateo la fecha en una cadena
         jlDia.setText(sdf.format(fecha)); //seteo en el jLabel la cadena obtenida
    
+        //Invoco al método que inicializa la imagen de fondo
         ContenidoInicial();
     }
 
@@ -39,7 +41,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jpEscritorio = new javax.swing.JPanel();
         jpMenu = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        jlLogo = new javax.swing.JLabel();
         jbPorIngrediente = new javax.swing.JButton();
         jbPorCategoria = new javax.swing.JButton();
         jbPorHorario = new javax.swing.JButton();
@@ -47,15 +49,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAdministracion = new javax.swing.JButton();
         jbSinGluten = new javax.swing.JButton();
         jbBusquedaCombinada = new javax.swing.JButton();
+        jpFondo2 = new javax.swing.JPanel();
         jpCabecera = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        jlBienvenida = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jlDia = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jpFondo = new javax.swing.JPanel();
+        jlVeganicemosElMundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jpEscritorio.setBackground(new java.awt.Color(255, 255, 255));
         jpEscritorio.setPreferredSize(new java.awt.Dimension(1310, 710));
@@ -63,7 +67,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpMenu.setBackground(new java.awt.Color(153, 0, 153));
         jpMenu.setPreferredSize(new java.awt.Dimension(270, 640));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo (1).png"))); // NOI18N
+        jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo (1).png"))); // NOI18N
 
         jbPorIngrediente.setBackground(new java.awt.Color(153, 0, 153));
         jbPorIngrediente.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -251,7 +255,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jLabel3))
+                .addComponent(jlLogo))
             .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,7 +268,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(5, 5, 5)
                 .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
@@ -281,6 +285,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        javax.swing.GroupLayout jpFondo2Layout = new javax.swing.GroupLayout(jpFondo2);
+        jpFondo2.setLayout(jpFondo2Layout);
+        jpFondo2Layout.setHorizontalGroup(
+            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1044, Short.MAX_VALUE)
+        );
+        jpFondo2Layout.setVerticalGroup(
+            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         jpCabecera.setBackground(new java.awt.Color(255, 153, 0));
         jpCabecera.setPreferredSize(new java.awt.Dimension(750, 150));
 
@@ -295,9 +310,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel2.setText("Bienvenida/e/o a VACA, la primera app de cocina vegana");
+        jlBienvenida.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlBienvenida.setForeground(new java.awt.Color(153, 0, 153));
+        jlBienvenida.setText("Bienvenida/e/o a VACA, la primera app de cocina vegana");
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -319,9 +334,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpCabecera.setLayout(jpCabeceraLayout);
         jpCabeceraLayout.setHorizontalGroup(
             jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(jpCabeceraLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jlBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jpCabeceraLayout.createSequentialGroup()
                 .addGap(42, 42, 42)
                 .addComponent(jlDia))
@@ -332,18 +348,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jpCabeceraLayout.setVerticalGroup(
             jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpCabeceraLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addComponent(jLabel2)
+                .addComponent(jlBienvenida)
                 .addGap(34, 34, 34)
                 .addComponent(jlDia)
                 .addGap(51, 51, 51)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jLabel1.setBackground(new java.awt.Color(153, 0, 153));
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel1.setText("¡Veganicemos el mundo!");
 
         javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
         jpFondo.setLayout(jpFondoLayout);
@@ -356,6 +368,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jlVeganicemosElMundo.setBackground(new java.awt.Color(153, 0, 153));
+        jlVeganicemosElMundo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jlVeganicemosElMundo.setForeground(new java.awt.Color(153, 0, 153));
+        jlVeganicemosElMundo.setText("¡Veganicemos el mundo!");
+
         javax.swing.GroupLayout jpEscritorioLayout = new javax.swing.GroupLayout(jpEscritorio);
         jpEscritorio.setLayout(jpEscritorioLayout);
         jpEscritorioLayout.setHorizontalGroup(
@@ -365,30 +382,39 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEscritorioLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jpCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 1042, Short.MAX_VALUE))))
+                        .addComponent(jlVeganicemosElMundo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpEscritorioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
+                            .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jpFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jpEscritorioLayout.setVerticalGroup(
             jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addGroup(jpEscritorioLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
-                .addComponent(jLabel1)
-                .addGap(6, 6, 6)
+                .addComponent(jlVeganicemosElMundo)
                 .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpEscritorioLayout.createSequentialGroup()
-                        .addGap(145, 145, 145)
-                        .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jpCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jpCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jpEscritorioLayout.createSequentialGroup()
+                                .addGap(145, 145, 145)
+                                .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(525, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1312, Short.MAX_VALUE)
+            .addComponent(jpEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,9 +566,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbAdministracion;
@@ -552,23 +575,27 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbPorIngrediente;
     private javax.swing.JButton jbPorTipoDeCocina;
     private javax.swing.JButton jbSinGluten;
+    private javax.swing.JLabel jlBienvenida;
     private javax.swing.JLabel jlDia;
+    private javax.swing.JLabel jlLogo;
+    private javax.swing.JLabel jlVeganicemosElMundo;
     private javax.swing.JPanel jpCabecera;
     private javax.swing.JPanel jpEscritorio;
     private javax.swing.JPanel jpFondo;
+    private javax.swing.JPanel jpFondo2;
     private javax.swing.JPanel jpMenu;
     // End of variables declaration//GEN-END:variables
 
     public void ContenidoInicial(){
-        FotoDeFondo fotoInicial = new FotoDeFondo();
-        fotoInicial.setSize(1044, 697);
+        Principal fotoInicial = new Principal();
+        fotoInicial.setSize(1099, 734);
         fotoInicial.setLocation(0,0);
         
-        jpFondo.removeAll();
-        jpFondo.add(fotoInicial,BorderLayout.CENTER);
-        jpFondo.revalidate();
-        jpFondo.repaint();
-    
+        jpFondo2.removeAll();
+        jpFondo2.add(fotoInicial,BorderLayout.CENTER);
+        jpFondo2.revalidate();
+        jpFondo2.repaint();
+           
     
 }
 

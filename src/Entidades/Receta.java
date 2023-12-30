@@ -5,26 +5,39 @@ import java.util.*;
 
 public class Receta {
 
+    private int id_receta;
     private String titulo;
     private String ingredientes;
     private String cuerpo;
     private boolean sinTACC;
     private int categoria;
-    private ArrayList<String> ingredientePpal;
-    private TipoDeComida tipoComida;
-    private FormaDeCoccion formaDeCoccion;
-    private ArrayList<String> tipoDeCocina;
+    private String ingredientePrincipal;
+    private String tipoDeComida;
+    private String formaDeCoccion;
+    private String tipoDeCocina;
 
-    public Receta(String titulo, String ingredientes, String cuerpo, boolean sinTACC, int categoria, ArrayList<String> ingredientePpal, TipoDeComida tipoComida, FormaDeCoccion formaCoccion, ArrayList<String> tipoDeCocina) {
+    public Receta(int id_receta, String titulo, String ingredientes, String cuerpo, boolean sinTACC, int categoria, String ingredientePrincipal, String tipoDeComida, String formaDeCoccion, String tipoDeCocina) {
+        this.id_receta = id_receta;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
         this.cuerpo = cuerpo;
         this.sinTACC = sinTACC;
         this.categoria = categoria;
-        this.ingredientePpal = ingredientePpal;
-        this.tipoComida = tipoComida;
-        this.formaDeCoccion = formaCoccion;
+        this.ingredientePrincipal = ingredientePrincipal;
+        this.tipoDeComida = tipoDeComida;
+        this.formaDeCoccion = formaDeCoccion;
         this.tipoDeCocina = tipoDeCocina;
+    }
+
+    public Receta() {
+    }
+
+    public int getId_receta() {
+        return id_receta;
+    }
+
+    public void setId_receta(int id_receta) {
+        this.id_receta = id_receta;
     }
 
     public String getTitulo() {
@@ -67,37 +80,39 @@ public class Receta {
         this.categoria = categoria;
     }
 
-    public ArrayList<String> getIngredientePpal() {
-        return ingredientePpal;
+    public String getIngredientePrincipal() {
+        return ingredientePrincipal;
     }
 
-    public void setIngredientePpal(ArrayList<String> ingredientePpal) {
-        this.ingredientePpal = ingredientePpal;
+    public void setIngredientePrincipal(String ingredientePrincipal) {
+        this.ingredientePrincipal = ingredientePrincipal;
     }
 
-    public TipoDeComida getTipoComida() {
-        return tipoComida;
+    public String getTipoDeComida() {
+        return tipoDeComida;
     }
 
-    public void setTipoComida(TipoDeComida tipoComida) {
-        this.tipoComida = tipoComida;
+    public void setTipoDeComida(String tipoDeComida) {
+        this.tipoDeComida = tipoDeComida;
     }
 
-    public FormaDeCoccion getFormaCoccion() {
+    public String getFormaDeCoccion() {
         return formaDeCoccion;
     }
 
-    public void setFormaCoccion(FormaDeCoccion formaCoccion) {
-        this.formaDeCoccion = formaCoccion;
+    public void setFormaDeCoccion(String formaDeCoccion) {
+        this.formaDeCoccion = formaDeCoccion;
     }
 
-    public ArrayList<String> getTipoDeCocina() {
+    public String getTipoDeCocina() {
         return tipoDeCocina;
     }
 
-    public void setTipoDeCocina(ArrayList<String> tipoDeCocina) {
+    public void setTipoDeCocina(String tipoDeCocina) {
         this.tipoDeCocina = tipoDeCocina;
     }
+
+    
     
     
 }
