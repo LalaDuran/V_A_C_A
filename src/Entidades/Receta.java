@@ -10,13 +10,13 @@ public class Receta {
     private String ingredientes;
     private String cuerpo;
     private boolean sinTACC;
-    private int categoria;
+    private String categoria;
     private String ingredientePrincipal;
     private String tipoDeComida;
     private String formaDeCoccion;
     private String tipoDeCocina;
 
-    public Receta(int id_receta, String titulo, String ingredientes, String cuerpo, boolean sinTACC, int categoria, String ingredientePrincipal, String tipoDeComida, String formaDeCoccion, String tipoDeCocina) {
+    public Receta(int id_receta, String titulo, String ingredientes, String cuerpo, boolean sinTACC, String categoria, String ingredientePrincipal, String tipoDeComida, String formaDeCoccion, String tipoDeCocina) {
         this.id_receta = id_receta;
         this.titulo = titulo;
         this.ingredientes = ingredientes;
@@ -72,11 +72,11 @@ public class Receta {
         this.sinTACC = sinTACC;
     }
 
-    public int getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(int categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 

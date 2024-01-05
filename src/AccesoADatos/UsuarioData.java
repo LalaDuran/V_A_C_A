@@ -1,14 +1,8 @@
 package AccesoADatos;
 
-import Entidades.Receta;
-import Entidades.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import Entidades.*;
+import java.sql.*;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class UsuarioData {
@@ -23,6 +17,7 @@ public class UsuarioData {
     }
 
     public void guardarUsuario(Usuario usuario) {
+        //Genera el comando SQL con los valores dinámicos
         String sql = "INSERT INTO usuario (nombre, contrasenia, administrador) "
                 + "VALUES (?,?,?)";
 
@@ -38,7 +33,7 @@ public class UsuarioData {
             //Ejecutamos el comando SQL
             ps.executeUpdate();
 
-            //Recuperamos el id_alumno generado autoincremental
+            //Recuperamos el id_usuario generado autoincremental
             ResultSet rs = ps.getGeneratedKeys();
 
             //Asignamos el id generado 
@@ -58,6 +53,7 @@ public class UsuarioData {
     }
 
     public void modificarUsuario(Usuario usuario) {
+        //Genera el comando SQL con los valores dinámicos
         String sql = "UPDATE usuario "
                 + "SET nombre = ?, contrasenia = ?, administrador = ? "
                 + "WHERE id_usuario = ?";
@@ -90,7 +86,7 @@ public class UsuarioData {
     }
 
     public List<Usuario> listarUsuario() {
-
+        //Genera el comando SQL con los valores dinámicos
         String sql = "SELECT id_usuario, nombre, contrasenia, administrador "
                 + "FROM usuario ";
 
@@ -105,14 +101,14 @@ public class UsuarioData {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                //Instanciamos mesaABuscar y seteamos
+                //Instanciamos usuarioABuscar y seteamos
                 Usuario usuarioABuscar = new Usuario();
                 usuarioABuscar.setId_usuario(rs.getInt("id_usuario"));
                 usuarioABuscar.setNombre(rs.getString("nombre"));
                 usuarioABuscar.setContrasenia(rs.getString("contrasenia"));
                 usuarioABuscar.setAdministrador(rs.getBoolean("administrador"));
 
-                //Agregamos la mesa al arraylist
+                //Agregamos el usuario encontrado al arraylist
                 usuarios.add(usuarioABuscar);
             }
 
@@ -126,5 +122,5 @@ public class UsuarioData {
         }
         return usuarios;
     }
-    
+
 }

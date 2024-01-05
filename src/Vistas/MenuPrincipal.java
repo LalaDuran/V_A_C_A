@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import java.awt.BorderLayout;
@@ -6,28 +5,31 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class MenuPrincipal extends javax.swing.JFrame {
 
     Color violeta = new Color(153,0,153);
-    Color naranja = new Color(255,153,0);
-    
-   
+    Color naranja = new Color(255,153,0); 
+
     public MenuPrincipal() {
         initComponents();
-        this.setResizable(true);
+        
+        //Impide el cambio de tamaño de la ventana
+        this.setResizable(false);
+        
+        //Abre la ventana del menú en el centro
+        this.setLocationRelativeTo(null);
         
         //Establece el tono violeta del panel de menúes y de los botones
         jpMenu.setBackground(violeta);
         jbPorCategoria.setBackground(violeta);
 
-        //Establece la fecha de forma automática
-        Date fecha = new Date(); //fecha y hora actual
-        SimpleDateFormat sdf = new SimpleDateFormat("'Hoy es 'EEEE dd' de 'MMMM' de 'yyyy"); //formateo la fecha en una cadena
-        jlDia.setText(sdf.format(fecha)); //seteo en el jLabel la cadena obtenida
-   
-        //Invoco al método que inicializa la imagen de fondo
-        ContenidoInicial();
+        //Establece la fecha en formato [nombreDía dd MMMM aaaa]
+        establecerFecha();
+        
+        //Establece la foto inicial de fondo
+        initContent();
+        
+        
     }
 
     /**
@@ -39,61 +41,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jpEscritorio = new javax.swing.JPanel();
+        jpFondoBlanco = new javax.swing.JPanel();
         jpMenu = new javax.swing.JPanel();
         jlLogo = new javax.swing.JLabel();
-        jbPorIngrediente = new javax.swing.JButton();
         jbPorCategoria = new javax.swing.JButton();
+        jbPorIngrediente = new javax.swing.JButton();
         jbPorHorario = new javax.swing.JButton();
         jbPorTipoDeCocina = new javax.swing.JButton();
-        jbAdministracion = new javax.swing.JButton();
         jbSinGluten = new javax.swing.JButton();
         jbBusquedaCombinada = new javax.swing.JButton();
-        jpFondo2 = new javax.swing.JPanel();
+        jbAdministracion = new javax.swing.JButton();
         jpCabecera = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        jpContent = new javax.swing.JPanel();
         jlBienvenida = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jlDia = new javax.swing.JLabel();
-        jpFondo = new javax.swing.JPanel();
         jlVeganicemosElMundo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
-        jpEscritorio.setBackground(new java.awt.Color(255, 255, 255));
-        jpEscritorio.setPreferredSize(new java.awt.Dimension(1310, 710));
+        jpFondoBlanco.setBackground(new java.awt.Color(255, 255, 255));
 
         jpMenu.setBackground(new java.awt.Color(153, 0, 153));
-        jpMenu.setPreferredSize(new java.awt.Dimension(270, 640));
+        jpMenu.setPreferredSize(new java.awt.Dimension(290, 750));
 
         jlLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Logo (1).png"))); // NOI18N
-
-        jbPorIngrediente.setBackground(new java.awt.Color(153, 0, 153));
-        jbPorIngrediente.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jbPorIngrediente.setForeground(new java.awt.Color(255, 255, 255));
-        jbPorIngrediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ingrediente ppal de 50.png"))); // NOI18N
-        jbPorIngrediente.setText("   Por INGREDIENTE");
-        jbPorIngrediente.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
-        jbPorIngrediente.setBorderPainted(false);
-        jbPorIngrediente.setContentAreaFilled(false);
-        jbPorIngrediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbPorIngrediente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbPorIngrediente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jbPorIngrediente.setIconTextGap(6);
-        jbPorIngrediente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jbPorIngredienteMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jbPorIngredienteMouseExited(evt);
-            }
-        });
-        jbPorIngrediente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPorIngredienteActionPerformed(evt);
-            }
-        });
 
         jbPorCategoria.setBackground(new java.awt.Color(153, 0, 153));
         jbPorCategoria.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -118,6 +89,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbPorCategoriaActionPerformed(evt);
+            }
+        });
+
+        jbPorIngrediente.setBackground(new java.awt.Color(153, 0, 153));
+        jbPorIngrediente.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbPorIngrediente.setForeground(new java.awt.Color(255, 255, 255));
+        jbPorIngrediente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/ingrediente ppal de 50.png"))); // NOI18N
+        jbPorIngrediente.setText("   Por INGREDIENTE");
+        jbPorIngrediente.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        jbPorIngrediente.setBorderPainted(false);
+        jbPorIngrediente.setContentAreaFilled(false);
+        jbPorIngrediente.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbPorIngrediente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbPorIngrediente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbPorIngrediente.setIconTextGap(6);
+        jbPorIngrediente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbPorIngredienteMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbPorIngredienteMouseExited(evt);
+            }
+        });
+        jbPorIngrediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPorIngredienteActionPerformed(evt);
             }
         });
 
@@ -172,32 +169,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jbAdministracion.setBackground(new java.awt.Color(153, 0, 153));
-        jbAdministracion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jbAdministracion.setForeground(new java.awt.Color(255, 255, 255));
-        jbAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/administración de 50.png"))); // NOI18N
-        jbAdministracion.setText("   ADMINISTRACIÓN");
-        jbAdministracion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
-        jbAdministracion.setBorderPainted(false);
-        jbAdministracion.setContentAreaFilled(false);
-        jbAdministracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbAdministracion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jbAdministracion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        jbAdministracion.setIconTextGap(6);
-        jbAdministracion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jbAdministracionMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jbAdministracionMouseExited(evt);
-            }
-        });
-        jbAdministracion.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbAdministracionActionPerformed(evt);
-            }
-        });
-
         jbSinGluten.setBackground(new java.awt.Color(153, 0, 153));
         jbSinGluten.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jbSinGluten.setForeground(new java.awt.Color(255, 255, 255));
@@ -249,27 +220,57 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbAdministracion.setBackground(new java.awt.Color(153, 0, 153));
+        jbAdministracion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbAdministracion.setForeground(new java.awt.Color(255, 255, 255));
+        jbAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/administración de 50.png"))); // NOI18N
+        jbAdministracion.setText("   ADMINISTRACIÓN");
+        jbAdministracion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        jbAdministracion.setBorderPainted(false);
+        jbAdministracion.setContentAreaFilled(false);
+        jbAdministracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbAdministracion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbAdministracion.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbAdministracion.setIconTextGap(6);
+        jbAdministracion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbAdministracionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbAdministracionMouseExited(evt);
+            }
+        });
+        jbAdministracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAdministracionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jlLogo))
-            .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenuLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jpMenuLayout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jlLogo)))
+                .addContainerGap())
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(47, 47, 47)
                 .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,177 +283,123 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(4, 4, 4)
                 .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jpFondo2Layout = new javax.swing.GroupLayout(jpFondo2);
-        jpFondo2.setLayout(jpFondo2Layout);
-        jpFondo2Layout.setHorizontalGroup(
-            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1044, Short.MAX_VALUE)
-        );
-        jpFondo2Layout.setVerticalGroup(
-            jpFondo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jpCabecera.setBackground(new java.awt.Color(255, 153, 0));
-        jpCabecera.setPreferredSize(new java.awt.Dimension(750, 150));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
+        jpContent.setLayout(jpContentLayout);
+        jpContentLayout.setHorizontalGroup(
+            jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        jpContentLayout.setVerticalGroup(
+            jpContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 795, Short.MAX_VALUE)
         );
 
-        jlBienvenida.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlBienvenida.setBackground(new java.awt.Color(255, 153, 0));
+        jlBienvenida.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
         jlBienvenida.setForeground(new java.awt.Color(153, 0, 153));
         jlBienvenida.setText("Bienvenida/e/o a VACA, la primera app de cocina vegana");
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1030, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 450, Short.MAX_VALUE)
-        );
-
-        jlDia.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        jlDia.setBackground(new java.awt.Color(255, 153, 0));
+        jlDia.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         jlDia.setForeground(new java.awt.Color(153, 0, 153));
+        jlDia.setText("Hoy es ...");
 
         javax.swing.GroupLayout jpCabeceraLayout = new javax.swing.GroupLayout(jpCabecera);
         jpCabecera.setLayout(jpCabeceraLayout);
         jpCabeceraLayout.setHorizontalGroup(
             jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jpContent, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jpCabeceraLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jlBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jpCabeceraLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jlDia))
-            .addGroup(jpCabeceraLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(53, 53, 53)
+                .addGroup(jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlDia)
+                    .addComponent(jlBienvenida))
+                .addContainerGap(410, Short.MAX_VALUE))
         );
         jpCabeceraLayout.setVerticalGroup(
             jpCabeceraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpCabeceraLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCabeceraLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addComponent(jlBienvenida)
-                .addGap(34, 34, 34)
+                .addGap(49, 49, 49)
                 .addComponent(jlDia)
-                .addGap(51, 51, 51)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(65, 65, 65)
+                .addComponent(jpContent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        javax.swing.GroupLayout jpFondoLayout = new javax.swing.GroupLayout(jpFondo);
-        jpFondo.setLayout(jpFondoLayout);
-        jpFondoLayout.setHorizontalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jpFondoLayout.setVerticalGroup(
-            jpFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jlVeganicemosElMundo.setBackground(new java.awt.Color(153, 0, 153));
-        jlVeganicemosElMundo.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jlVeganicemosElMundo.setBackground(new java.awt.Color(255, 255, 255));
+        jlVeganicemosElMundo.setFont(new java.awt.Font("Roboto Medium", 1, 14)); // NOI18N
         jlVeganicemosElMundo.setForeground(new java.awt.Color(153, 0, 153));
-        jlVeganicemosElMundo.setText("¡Veganicemos el mundo!");
+        jlVeganicemosElMundo.setText("¡¡¡ Veganicemos el mundo !!!");
 
-        javax.swing.GroupLayout jpEscritorioLayout = new javax.swing.GroupLayout(jpEscritorio);
-        jpEscritorio.setLayout(jpEscritorioLayout);
-        jpEscritorioLayout.setHorizontalGroup(
-            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpEscritorioLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpFondoBlancoLayout = new javax.swing.GroupLayout(jpFondoBlanco);
+        jpFondoBlanco.setLayout(jpFondoBlancoLayout);
+        jpFondoBlancoLayout.setHorizontalGroup(
+            jpFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpFondoBlancoLayout.createSequentialGroup()
                 .addComponent(jpMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpEscritorioLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jlVeganicemosElMundo, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpEscritorioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, 1044, Short.MAX_VALUE)
-                            .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jpFondo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGroup(jpFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpCabecera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jpFondoBlancoLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jlVeganicemosElMundo)
+                        .addContainerGap())))
         );
-        jpEscritorioLayout.setVerticalGroup(
-            jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-            .addGroup(jpEscritorioLayout.createSequentialGroup()
-                .addGap(12, 12, 12)
+        jpFondoBlancoLayout.setVerticalGroup(
+            jpFondoBlancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jpMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 1055, Short.MAX_VALUE)
+            .addGroup(jpFondoBlancoLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
                 .addComponent(jlVeganicemosElMundo)
-                .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpEscritorioLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(jpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jpCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jpEscritorioLayout.createSequentialGroup()
-                                .addGap(145, 145, 145)
-                                .addComponent(jpFondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(525, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpEscritorioLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpFondo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(18, 18, 18)
+                .addComponent(jpCabecera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 1320, Short.MAX_VALUE)
+            .addComponent(jpFondoBlanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpEscritorio, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jpFondoBlanco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbPorIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorIngredienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbPorIngredienteActionPerformed
-
-    private void jbPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorCategoriaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbPorCategoriaActionPerformed
-
-    private void jbAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdministracionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbAdministracionActionPerformed
-
-    private void jbPorHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorHorarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbPorHorarioActionPerformed
-
-    private void jbPorTipoDeCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbPorTipoDeCocinaActionPerformed
-
-    private void jbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSinGlutenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbSinGlutenActionPerformed
-
-    private void jbBusquedaCombinadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbBusquedaCombinadaActionPerformed
-
+    
+    private void initContent() {
+        
+        Principal ppal = new Principal();
+        ppal.setSize(980, 654);
+        ppal.setLocation(0, 0);
+        
+        jpContent.removeAll();
+        jpContent.add(ppal, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+         
+    }
+    
+    private void establecerFecha() {
+        
+        //Establece la fecha de forma automática
+        Date fecha = new Date(); //fecha y hora actual
+        SimpleDateFormat sdf = new SimpleDateFormat("'Hoy es 'EEEE dd' de 'MMMM' de 'yyyy"); //formateo la fecha en una cadena
+        jlDia.setText(sdf.format(fecha)); //seteo en el jLabel la cadena obtenida
+               
+    }
+    
     private void jbPorCategoriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorCategoriaMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
         jbPorCategoria.setForeground(naranja);
@@ -463,6 +410,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorCategoria.setBackground(violeta);
         jbPorCategoria.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbPorCategoriaMouseExited
+
+    private void jbPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorCategoriaActionPerformed
+        BusquedaPorCategoria bpcat = new BusquedaPorCategoria();
+        bpcat.setSize(980, 654);
+        bpcat.setLocation(0, 0);
+        
+        jpContent.removeAll();
+        jpContent.add(bpcat, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    }//GEN-LAST:event_jbPorCategoriaActionPerformed
 
     private void jbPorIngredienteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorIngredienteMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
@@ -475,6 +433,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorIngrediente.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbPorIngredienteMouseExited
 
+    private void jbPorIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorIngredienteActionPerformed
+        //         TODO add your handling code here:
+    }//GEN-LAST:event_jbPorIngredienteActionPerformed
+
     private void jbPorHorarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorHorarioMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
         jbPorHorario.setForeground(naranja);
@@ -486,8 +448,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorHorario.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbPorHorarioMouseExited
 
+    private void jbPorHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorHorarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbPorHorarioActionPerformed
+
     private void jbPorTipoDeCocinaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaMouseEntered
-         // Seteamos letras en naranja si se acerca el mouse
+        // Seteamos letras en naranja si se acerca el mouse
         jbPorTipoDeCocina.setForeground(naranja);
     }//GEN-LAST:event_jbPorTipoDeCocinaMouseEntered
 
@@ -496,6 +462,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorTipoDeCocina.setBackground(violeta);
         jbPorTipoDeCocina.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbPorTipoDeCocinaMouseExited
+
+    private void jbPorTipoDeCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbPorTipoDeCocinaActionPerformed
 
     private void jbSinGlutenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSinGlutenMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
@@ -508,6 +478,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbSinGluten.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbSinGlutenMouseExited
 
+    private void jbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSinGlutenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbSinGlutenActionPerformed
+
     private void jbBusquedaCombinadaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
         jbBusquedaCombinada.setForeground(naranja);
@@ -519,6 +493,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbBusquedaCombinada.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbBusquedaCombinadaMouseExited
 
+    private void jbBusquedaCombinadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbBusquedaCombinadaActionPerformed
+
     private void jbAdministracionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbAdministracionMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
         jbAdministracion.setForeground(naranja);
@@ -529,6 +507,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbAdministracion.setBackground(violeta);
         jbAdministracion.setForeground(java.awt.Color.white);
     }//GEN-LAST:event_jbAdministracionMouseExited
+
+    private void jbAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdministracionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbAdministracionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -556,6 +538,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -566,8 +549,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbAdministracion;
     private javax.swing.JButton jbBusquedaCombinada;
     private javax.swing.JButton jbPorCategoria;
@@ -580,27 +561,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlVeganicemosElMundo;
     private javax.swing.JPanel jpCabecera;
-    private javax.swing.JPanel jpEscritorio;
-    private javax.swing.JPanel jpFondo;
-    private javax.swing.JPanel jpFondo2;
+    private javax.swing.JPanel jpContent;
+    private javax.swing.JPanel jpFondoBlanco;
     private javax.swing.JPanel jpMenu;
     // End of variables declaration//GEN-END:variables
-
-    public void ContenidoInicial(){
-        Principal fotoInicial = new Principal();
-        fotoInicial.setSize(1099, 734);
-        fotoInicial.setLocation(0,0);
-        
-        jpFondo2.removeAll();
-        jpFondo2.add(fotoInicial,BorderLayout.CENTER);
-        jpFondo2.revalidate();
-        jpFondo2.repaint();
-           
-    
-}
-
-
-
-
-
 }
