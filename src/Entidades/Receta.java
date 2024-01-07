@@ -112,6 +112,26 @@ public class Receta {
         this.tipoDeCocina = tipoDeCocina;
     }
 
+    @Override
+    public String toString() {
+//        return titulo + '\n' + ingredientes + '\n' + '\n' + cuerpo +  '\n' + '\n' +"-  - - - - Ficha técnica - - - - -" + '\n'+ "¿Es libre de gluten?:  " + sinTACC + '\n'+
+//                      "Categoría:             " + categoria + '\n' +
+//                      "Ingrediente principal: " + ingredientePrincipal + '\n' +
+//                      "Horario de comida:     " + tipoDeComida + '\n' + 
+//                      "Forma de cocción:      " + formaDeCoccion + '\n' +
+//                      "Tipo de cocina:        " + tipoDeCocina;
+        
+        return titulo +
+                " " + ingredientes + " " + cuerpo + " " + "¿Es libre de gluten?:  " + sinTACC + " "+
+                
+                      "Categoría:             " + categoria + " " +
+                      "Ingrediente principal: " + ingredientePrincipal + " " +
+                      "Horario de comida:     " + tipoDeComida + " " + 
+                      "Forma de cocción:      " + formaDeCoccion + " " +
+                      "Tipo de cocina:        " + tipoDeCocina;
+        
+    }
+
     
     
     

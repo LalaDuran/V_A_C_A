@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 public class MenuPrincipal extends javax.swing.JFrame {
 
     Color violeta = new Color(153,0,153);
@@ -434,7 +435,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorIngredienteMouseExited
 
     private void jbPorIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorIngredienteActionPerformed
-        //         TODO add your handling code here:
+        BusquedaPorIngrediente bping = new BusquedaPorIngrediente();
+        bping.setSize(980, 654);
+        bping.setLocation(0, 0);
+        
+        jpContent.removeAll();
+        jpContent.add(bping, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbPorIngredienteActionPerformed
 
     private void jbPorHorarioMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorHorarioMouseEntered
@@ -449,7 +457,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorHorarioMouseExited
 
     private void jbPorHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorHorarioActionPerformed
-        // TODO add your handling code here:
+        BusquedaPorHorario bphora = new BusquedaPorHorario();
+        bphora.setSize(980, 654);
+        bphora.setLocation(0, 0);
+        
+        jpContent.removeAll();
+        jpContent.add(bphora, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbPorHorarioActionPerformed
 
     private void jbPorTipoDeCocinaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaMouseEntered

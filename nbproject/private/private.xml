@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Entidades/TipoDeCocina.java</file>
+            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Entidades/Receta.java</file>
             <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Vistas/MenuPrincipal.java</file>
-            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Entidades/Categoria.java</file>
-            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Vistas/BusquedaPorCategoria.java</file>
             <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Entidades/TipoDeComida_Horario.java</file>
+            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Vistas/BusquedaPorCategoria.java</file>
+            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Vistas/BusquedaPorHorario.java</file>
+            <file>file:/C:/Users/Adriana/Documents/NetBeansProjects/V_A_C_A/src/Vistas/BusquedaPorIngrediente.java</file>
         </group>
     </open-files>
 </project-private>

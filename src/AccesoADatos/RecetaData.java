@@ -97,7 +97,7 @@ public class RecetaData {
         }
     }
 
-    public Receta buscarRecetaPorCategoria(String categoria) {
+       public Receta buscarRecetaPorCategoria(String categoria) {
         //Genera el comando SQL con los valores dinámicos
         String sql = "SELECT titulo, ingredientes, cuerpo, sin_tacc, ingrediente_principal, tipo_de_comida, forma_de_coccion, tipo_de_cocina "
                 + "FROM receta "
@@ -131,6 +131,53 @@ public class RecetaData {
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe receta en esa categoría");
+            }
+
+            //Liberamos recursos
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
+        } catch (NullPointerException ex) {
+
+        }
+        return recetaABuscar;
+    }
+    
+    public Receta buscarRecetaPorTitulo(String titulo) {
+        //Genera el comando SQL con los valores dinámicos
+        String sql = "SELECT categoria, ingredientes, cuerpo, sin_tacc, ingrediente_principal, tipo_de_comida, forma_de_coccion, tipo_de_cocina "
+                + "FROM receta "
+                + "WHERE titulo = ?  ";
+
+        //Creamos una receta en null para setearla luego
+        Receta recetaABuscar = null;
+
+        try {
+            //Prepara el comando SQL
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            //Asignamos el valor al parámetro dinámico
+            ps.setString(1, titulo);
+
+            //Ejecutamos el comando SQL que devuelve un ResulSet; creamos variable
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                //Instanciamos recetaABuscar y seteamos sus atributos
+                recetaABuscar = new Receta();
+                recetaABuscar.setTitulo(titulo);
+                recetaABuscar.setCategoria(rs.getString("categoria"));
+                recetaABuscar.setIngredientes(rs.getString("ingredientes"));
+                recetaABuscar.setCuerpo(rs.getString("cuerpo"));
+                recetaABuscar.setSinTACC(rs.getBoolean("sin_tacc"));
+                recetaABuscar.setIngredientePrincipal(rs.getString("ingrediente_principal"));
+                recetaABuscar.setTipoDeComida(rs.getString("tipo_comida"));
+                recetaABuscar.setFormaDeCoccion(rs.getString("forma_de_coccion"));
+                recetaABuscar.setTipoDeCocina(rs.getString("tipo_de_cocina"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe receta con ese título");
             }
 
             //Liberamos recursos
