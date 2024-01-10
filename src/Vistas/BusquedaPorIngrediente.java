@@ -59,6 +59,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtTablaPorINgredientes = new javax.swing.JTable();
         jcbIngredientes = new javax.swing.JComboBox<>();
+        jbCerrar = new javax.swing.JButton();
         jlFotoDeFondo = new javax.swing.JLabel();
 
         jpBackground.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -72,7 +73,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         jlTitulo.setForeground(new java.awt.Color(153, 0, 153));
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlTitulo.setText("Búsqueda Por Ingrediente");
-        jpLienzoDeTrabajo.add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 30, 800, -1));
+        jpLienzoDeTrabajo.add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 30, 630, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
@@ -99,12 +100,34 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
 
         jpLienzoDeTrabajo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 790, 210));
 
+        jcbIngredientes.setBackground(new java.awt.Color(255, 255, 255));
+        jcbIngredientes.setForeground(new java.awt.Color(153, 0, 153));
         jcbIngredientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcbIngredientesActionPerformed(evt);
             }
         });
         jpLienzoDeTrabajo.add(jcbIngredientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 250, -1));
+
+        jbCerrar.setBackground(new java.awt.Color(153, 0, 153));
+        jbCerrar.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbCerrar.setForeground(new java.awt.Color(255, 255, 255));
+        jbCerrar.setText("X");
+        jbCerrar.setPreferredSize(new java.awt.Dimension(90, 32));
+        jbCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbCerrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbCerrarMouseExited(evt);
+            }
+        });
+        jbCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbCerrarActionPerformed(evt);
+            }
+        });
+        jpLienzoDeTrabajo.add(jbCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 10, 40, -1));
 
         jpBackground.add(jpLienzoDeTrabajo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 810, 340));
 
@@ -128,7 +151,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         RecetaData recetaData = new RecetaData();
         Receta receta = new Receta();
 
-        //Creamos una variable y le asignamos la categoría seleccionada en la vista
+        //Creamos una variable y le asignamos el ingrediente seleccionado en la vista
         String ingredienteSeleccionado = (String) jcbIngredientes.getSelectedItem();
 
         //Borramos las filas evitando repeticiones
@@ -145,16 +168,32 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
                     esSinGluten = "Si";
                 }
 
-                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getTipoDeComida(), aux.getTipoDeCocina(), esSinGluten});
+                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion(), esSinGluten});
             }
         }
 
     }//GEN-LAST:event_jcbIngredientesActionPerformed
 
+    private void jbCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCerrarMouseEntered
+        jbCerrar.setBackground(naranja);
+        jbCerrar.setForeground(Color.white);
+    }//GEN-LAST:event_jbCerrarMouseEntered
+
+    private void jbCerrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCerrarMouseExited
+        jbCerrar.setBackground(violeta);
+        jbCerrar.setForeground(Color.white);
+
+    }//GEN-LAST:event_jbCerrarMouseExited
+
+    private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
+        MenuPrincipal.volverALaFotoDeFondo();
+    }//GEN-LAST:event_jbCerrarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbCerrar;
     private javax.swing.JComboBox<String> jcbIngredientes;
     private javax.swing.JLabel jlFotoDeFondo;
     private javax.swing.JLabel jlTitulo;
@@ -163,66 +202,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
     private javax.swing.JTable jtTablaPorINgredientes;
     // End of variables declaration//GEN-END:variables
 
-    private void armarTabla() {
-        //Agregamos las cabeceras a la tabla
-        modelo.addColumn("Título");
-        modelo.addColumn("Categoría");
-        modelo.addColumn("Tipo de Comida");
-        modelo.addColumn("Tipo de Cocina");
-        modelo.addColumn("Sin Gluten");
-
-        //Seteamos el modelo a la tabla
-        jtTablaPorINgredientes.setModel(modelo);
-
-        //Impedimos el reordenamiento de la cabecera
-        jtTablaPorINgredientes.getTableHeader().setReorderingAllowed(false);
-
-//       Para hacer uso de la clase MyRenderer solo es necesario escribir este código en el lugar donde esta el jTable:
-        jtTablaPorINgredientes.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-
-//La clase MyRenderer tiene definido un constructor que recibe 2 parámetros Color, los cuales corresponden a los colores de fondo y de fuente.
-        DefaultTableCellRenderer tcr0 = new DefaultTableCellRenderer();
-
-        //para centrar los datos de la segunda columna
-        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setCellRenderer(tcr0);
-
-        //para centrar los datos de la tercera columna
-        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setCellRenderer(tcr0);
-
-        //Para centrar los datos de la cuarta columna
-        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setCellRenderer(tcr0);
-
-        //Para centrar los datos de la quinta columna
-        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setCellRenderer(tcr0);
-
-        //Para establecer los anchos de columna
-        jtTablaPorINgredientes.getColumnModel().getColumn(0).setPreferredWidth(150);
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setPreferredWidth(20);
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setPreferredWidth(50);
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setPreferredWidth(10);
-
-        //Para hacer blanco el fondo de la tabla
-        jtTablaPorINgredientes.setOpaque(true);
-        jtTablaPorINgredientes.setBackground(Color.white);
-
-    }
-
-    private void borrarFilas() {
-        //Evita la repetición de las filas en la tabla
-        while (modelo.getRowCount() > 0) {
-            modelo.removeRow(0);
-        }
-    }
-
+   
     private void cargarIngredientesAlComboBox() {
 
         jcbIngredientes.addItem("Selecciona el Ingrediente:");
@@ -303,6 +283,78 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
 
     }
 
+     private void armarTabla() {
+        //Agregamos las cabeceras a la tabla
+        modelo.addColumn("Título");
+        modelo.addColumn("Categoría");
+        modelo.addColumn("Horario");
+        modelo.addColumn("Tipo de Cocina");
+        modelo.addColumn("Forma de Cocción");
+        modelo.addColumn("Sin Gluten");
+
+        //Seteamos el modelo a la tabla
+        jtTablaPorINgredientes.setModel(modelo);
+
+        //Impedimos el reordenamiento de la cabecera
+        jtTablaPorINgredientes.getTableHeader().setReorderingAllowed(false);
+
+//       Para hacer uso de la clase MyRenderer solo es necesario escribir este código en el lugar donde esta el jTable:
+        jtTablaPorINgredientes.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorINgredientes.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorINgredientes.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorINgredientes.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorINgredientes.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorINgredientes.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+
+//La clase MyRenderer tiene definido un constructor que recibe 2 parámetros Color, los cuales corresponden a los colores de fondo y de fuente.
+
+
+        DefaultTableCellRenderer tcr0 = new DefaultTableCellRenderer();
+
+        //para centrar los datos de la segunda columna
+        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
+        jtTablaPorINgredientes.getColumnModel().getColumn(1).setCellRenderer(tcr0);
+
+        //para centrar los datos de la tercera columna
+        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
+        jtTablaPorINgredientes.getColumnModel().getColumn(2).setCellRenderer(tcr0);
+
+        //Para centrar los datos de la cuarta columna
+        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
+        jtTablaPorINgredientes.getColumnModel().getColumn(3).setCellRenderer(tcr0);
+
+        //Para centrar los datos de la quinta columna
+        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
+        jtTablaPorINgredientes.getColumnModel().getColumn(4).setCellRenderer(tcr0);
+
+        //Para centrar los datos de la sexta columna
+        tcr0.setHorizontalAlignment(SwingConstants.CENTER);
+        jtTablaPorINgredientes.getColumnModel().getColumn(5).setCellRenderer(tcr0);
+
+        
+        //Para establecer los anchos de columna
+        jtTablaPorINgredientes.getColumnModel().getColumn(0).setPreferredWidth(130);
+        jtTablaPorINgredientes.getColumnModel().getColumn(1).setPreferredWidth(90);
+        jtTablaPorINgredientes.getColumnModel().getColumn(2).setPreferredWidth(50);
+        jtTablaPorINgredientes.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jtTablaPorINgredientes.getColumnModel().getColumn(4).setPreferredWidth(25);
+        jtTablaPorINgredientes.getColumnModel().getColumn(5).setPreferredWidth(10);
+
+        //Para hacer blanco el fondo de la tabla
+        jtTablaPorINgredientes.setOpaque(true);
+        jtTablaPorINgredientes.setBackground(Color.white);
+
+    }
+
+    private void borrarFilas() {
+        //Evita la repetición de las filas en la tabla
+        while (modelo.getRowCount() > 0) {
+            modelo.removeRow(0);
+        }
+    }
+
+    
+    
     //para agregar la ventana pop-up a la tabla
     public void popUpTable() {
         //crea la carcaza vacía, el marco

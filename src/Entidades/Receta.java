@@ -29,6 +29,20 @@ public class Receta {
         this.tipoDeCocina = tipoDeCocina;
     }
 
+    public Receta(String titulo, String ingredientes, String cuerpo, boolean sinTACC, String categoria, String ingredientePrincipal, String tipoDeComida, String formaDeCoccion, String tipoDeCocina) {
+        this.titulo = titulo;
+        this.ingredientes = ingredientes;
+        this.cuerpo = cuerpo;
+        this.sinTACC = sinTACC;
+        this.categoria = categoria;
+        this.ingredientePrincipal = ingredientePrincipal;
+        this.tipoDeComida = tipoDeComida;
+        this.formaDeCoccion = formaDeCoccion;
+        this.tipoDeCocina = tipoDeCocina;
+    }
+    
+    
+    
     public Receta() {
     }
 

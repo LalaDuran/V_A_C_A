@@ -5,32 +5,30 @@ import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-
 public class MenuPrincipal extends javax.swing.JFrame {
 
-    Color violeta = new Color(153,0,153);
-    Color naranja = new Color(255,153,0); 
+    Color violeta = new Color(153, 0, 153);
+    Color naranja = new Color(255, 153, 0);
 
     public MenuPrincipal() {
         initComponents();
-        
+
         //Impide el cambio de tamaño de la ventana
         this.setResizable(false);
-        
+
         //Abre la ventana del menú en el centro
         this.setLocationRelativeTo(null);
-        
+
         //Establece el tono violeta del panel de menúes y de los botones
         jpMenu.setBackground(violeta);
         jbPorCategoria.setBackground(violeta);
 
         //Establece la fecha en formato [nombreDía dd MMMM aaaa]
         establecerFecha();
-        
+
         //Establece la foto inicial de fondo
         initContent();
-        
-        
+
     }
 
     /**
@@ -52,6 +50,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbSinGluten = new javax.swing.JButton();
         jbBusquedaCombinada = new javax.swing.JButton();
         jbAdministracion = new javax.swing.JButton();
+        jbPorFormaDeCoccion = new javax.swing.JButton();
         jpCabecera = new javax.swing.JPanel();
         jpContent = new javax.swing.JPanel();
         jlBienvenida = new javax.swing.JLabel();
@@ -247,31 +246,64 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbPorFormaDeCoccion.setBackground(new java.awt.Color(153, 0, 153));
+        jbPorFormaDeCoccion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbPorFormaDeCoccion.setForeground(new java.awt.Color(255, 255, 255));
+        jbPorFormaDeCoccion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/forma de coccion en 50.png"))); // NOI18N
+        jbPorFormaDeCoccion.setText("   Por COCCIÓN");
+        jbPorFormaDeCoccion.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        jbPorFormaDeCoccion.setBorderPainted(false);
+        jbPorFormaDeCoccion.setContentAreaFilled(false);
+        jbPorFormaDeCoccion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbPorFormaDeCoccion.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbPorFormaDeCoccion.setIconTextGap(6);
+        jbPorFormaDeCoccion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbPorFormaDeCoccionMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbPorFormaDeCoccionMouseExited(evt);
+            }
+        });
+        jbPorFormaDeCoccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPorFormaDeCoccionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpMenuLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+            .addGroup(jpMenuLayout.createSequentialGroup()
                 .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jpMenuLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addContainerGap()
+                        .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jpMenuLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jpMenuLayout.createSequentialGroup()
+                        .addGap(57, 57, 57)
                         .addComponent(jlLogo)))
-                .addContainerGap())
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addGap(11, 11, 11)
                 .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +311,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
                 .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -289,6 +323,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         );
 
         jpCabecera.setBackground(new java.awt.Color(255, 153, 0));
+        jpCabecera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jpCabeceraMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
         jpContent.setLayout(jpContentLayout);
@@ -378,29 +417,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void initContent() {
-        
-        Principal ppal = new Principal();
-        ppal.setSize(980, 654);
-        ppal.setLocation(0, 0);
-        
-        jpContent.removeAll();
-        jpContent.add(ppal, BorderLayout.CENTER);
-        jpContent.revalidate();
-        jpContent.repaint();
-         
+
+        volverALaFotoDeFondo();
+
     }
-    
+
     private void establecerFecha() {
-        
+
         //Establece la fecha de forma automática
         Date fecha = new Date(); //fecha y hora actual
         SimpleDateFormat sdf = new SimpleDateFormat("'Hoy es 'EEEE dd' de 'MMMM' de 'yyyy"); //formateo la fecha en una cadena
         jlDia.setText(sdf.format(fecha)); //seteo en el jLabel la cadena obtenida
-               
+
     }
-    
+
     private void jbPorCategoriaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorCategoriaMouseEntered
         // Seteamos letras en naranja si se acerca el mouse
         jbPorCategoria.setForeground(naranja);
@@ -416,7 +448,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         BusquedaPorCategoria bpcat = new BusquedaPorCategoria();
         bpcat.setSize(980, 654);
         bpcat.setLocation(0, 0);
-        
+
         jpContent.removeAll();
         jpContent.add(bpcat, BorderLayout.CENTER);
         jpContent.revalidate();
@@ -438,7 +470,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         BusquedaPorIngrediente bping = new BusquedaPorIngrediente();
         bping.setSize(980, 654);
         bping.setLocation(0, 0);
-        
+
         jpContent.removeAll();
         jpContent.add(bping, BorderLayout.CENTER);
         jpContent.revalidate();
@@ -460,7 +492,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         BusquedaPorHorario bphora = new BusquedaPorHorario();
         bphora.setSize(980, 654);
         bphora.setLocation(0, 0);
-        
+
         jpContent.removeAll();
         jpContent.add(bphora, BorderLayout.CENTER);
         jpContent.revalidate();
@@ -479,7 +511,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorTipoDeCocinaMouseExited
 
     private void jbPorTipoDeCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaActionPerformed
-        // TODO add your handling code here:
+        BusquedaPorTipoDeCocina bpTipoCocina = new BusquedaPorTipoDeCocina();
+        bpTipoCocina.setSize(980, 654);
+        bpTipoCocina.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(bpTipoCocina, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbPorTipoDeCocinaActionPerformed
 
     private void jbSinGlutenMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbSinGlutenMouseEntered
@@ -494,7 +533,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSinGlutenMouseExited
 
     private void jbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSinGlutenActionPerformed
-        // TODO add your handling code here:
+        BusquedaPorGluten bpgluten = new BusquedaPorGluten();
+        bpgluten.setSize(980, 654);
+        bpgluten.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(bpgluten, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbSinGlutenActionPerformed
 
     private void jbBusquedaCombinadaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaMouseEntered
@@ -509,7 +555,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbBusquedaCombinadaMouseExited
 
     private void jbBusquedaCombinadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaActionPerformed
-        // TODO add your handling code here:
+        BusquedaCombinada bcombi = new BusquedaCombinada();
+        bcombi.setSize(980, 654);
+        bcombi.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(bcombi, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbBusquedaCombinadaActionPerformed
 
     private void jbAdministracionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbAdministracionMouseEntered
@@ -524,8 +577,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbAdministracionMouseExited
 
     private void jbAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdministracionActionPerformed
-        // TODO add your handling code here:
+        Administracion adm = new Administracion();
+        adm.setSize(980, 654);
+        adm.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(adm, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }//GEN-LAST:event_jbAdministracionActionPerformed
+
+    private void jbPorFormaDeCoccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorFormaDeCoccionMouseEntered
+       // Seteamos letras en naranja si se acerca el mouse
+        jbPorFormaDeCoccion.setForeground(naranja);
+    }//GEN-LAST:event_jbPorFormaDeCoccionMouseEntered
+
+    private void jbPorFormaDeCoccionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorFormaDeCoccionMouseExited
+        // Seteamos la vuelta al violeta y blanco cuando el mouse se aleja
+        jbPorFormaDeCoccion.setBackground(violeta);
+        jbPorFormaDeCoccion.setForeground(java.awt.Color.white);
+    }//GEN-LAST:event_jbPorFormaDeCoccionMouseExited
+
+    private void jbPorFormaDeCoccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorFormaDeCoccionActionPerformed
+        BusquedaPorFormaDeCoccion bpcoccion = new BusquedaPorFormaDeCoccion();
+        bpcoccion.setSize(980, 654);
+        bpcoccion.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(bpcoccion, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    }//GEN-LAST:event_jbPorFormaDeCoccionActionPerformed
+
+    private void jpCabeceraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCabeceraMouseClicked
+        Principal ppal = new Principal();
+        ppal.setSize(980, 654);
+        ppal.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(ppal, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    }//GEN-LAST:event_jpCabeceraMouseClicked
 
     /**
      * @param args the command line arguments
@@ -554,6 +647,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -567,6 +666,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jbAdministracion;
     private javax.swing.JButton jbBusquedaCombinada;
     private javax.swing.JButton jbPorCategoria;
+    private javax.swing.JButton jbPorFormaDeCoccion;
     private javax.swing.JButton jbPorHorario;
     private javax.swing.JButton jbPorIngrediente;
     private javax.swing.JButton jbPorTipoDeCocina;
@@ -576,8 +676,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jlLogo;
     private javax.swing.JLabel jlVeganicemosElMundo;
     private javax.swing.JPanel jpCabecera;
-    private javax.swing.JPanel jpContent;
+    public static javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpFondoBlanco;
     private javax.swing.JPanel jpMenu;
     // End of variables declaration//GEN-END:variables
+
+    public static void volverALaFotoDeFondo(){
+        Principal ppal = new Principal();
+        ppal.setSize(980, 654);
+        ppal.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(ppal, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    
+    }
+
+
 }

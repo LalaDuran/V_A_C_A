@@ -2,6 +2,7 @@ package Vistas;
 
 import AccesoADatos.RecetaData;
 import Entidades.Categoria;
+import Entidades.FormaDeCoccion;
 import Entidades.Receta;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class BusquedaPorCategoria extends javax.swing.JPanel {
+public class BusquedaPorFormaDeCoccion extends javax.swing.JPanel {
 
     private static Object PdfWriter;
 
@@ -24,16 +25,16 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         }
     };
 
-    public BusquedaPorCategoria() {
+    public BusquedaPorFormaDeCoccion() {
 
         initComponents();
 
         //Carga los colores del ComboBox
-        jcbCategorias.setBackground(Color.white);
-        jcbCategorias.setForeground(violeta);
+        jcbFormasDeCoccion.setBackground(Color.white);
+        jcbFormasDeCoccion.setForeground(violeta);
 
-        //Carga las categorías al comboBox
-        cargarCategoriasAlComboBox();
+        //Carga las formas de cocción al comboBox
+        cargarFormasdeCoccionAlComboBox();
 
         //Carga la estructura de la tabla
         armarTabla();
@@ -57,8 +58,8 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         jlTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaPorCategorias = new javax.swing.JTable();
-        jcbCategorias = new javax.swing.JComboBox<>();
+        jtTablaPorFormaDeCoccion = new javax.swing.JTable();
+        jcbFormasDeCoccion = new javax.swing.JComboBox<>();
         jbCerrar = new javax.swing.JButton();
         jlFotoDeFondo = new javax.swing.JLabel();
 
@@ -72,17 +73,17 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         jlTitulo.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
         jlTitulo.setForeground(new java.awt.Color(153, 0, 153));
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo.setText("Búsqueda Por Categoría");
-        jpLienzoDeTrabajo.add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 30, 630, -1));
+        jlTitulo.setText("Búsqueda Por Forma de Cocción");
+        jpLienzoDeTrabajo.add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 30, 640, -1));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(153, 0, 153));
-        jLabel1.setText("Categoría:");
-        jpLienzoDeTrabajo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+        jLabel1.setText("Forma de Cocción:");
+        jpLienzoDeTrabajo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 110, -1));
 
-        jtTablaPorCategorias.setBackground(new java.awt.Color(255, 255, 255));
-        jtTablaPorCategorias.setForeground(new java.awt.Color(0, 0, 0));
-        jtTablaPorCategorias.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaPorFormaDeCoccion.setBackground(new java.awt.Color(255, 255, 255));
+        jtTablaPorFormaDeCoccion.setForeground(new java.awt.Color(0, 0, 0));
+        jtTablaPorFormaDeCoccion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,21 +94,21 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaPorCategorias.setGridColor(new java.awt.Color(255, 255, 255));
-        jtTablaPorCategorias.setSelectionBackground(new java.awt.Color(255, 153, 255));
-        jtTablaPorCategorias.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jtTablaPorCategorias);
+        jtTablaPorFormaDeCoccion.setGridColor(new java.awt.Color(255, 255, 255));
+        jtTablaPorFormaDeCoccion.setSelectionBackground(new java.awt.Color(255, 153, 255));
+        jtTablaPorFormaDeCoccion.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jtTablaPorFormaDeCoccion);
 
         jpLienzoDeTrabajo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 790, 210));
 
-        jcbCategorias.setBackground(new java.awt.Color(255, 255, 255));
-        jcbCategorias.setForeground(new java.awt.Color(153, 0, 153));
-        jcbCategorias.addActionListener(new java.awt.event.ActionListener() {
+        jcbFormasDeCoccion.setBackground(new java.awt.Color(255, 255, 255));
+        jcbFormasDeCoccion.setForeground(new java.awt.Color(153, 0, 153));
+        jcbFormasDeCoccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbCategoriasActionPerformed(evt);
+                jcbFormasDeCoccionActionPerformed(evt);
             }
         });
-        jpLienzoDeTrabajo.add(jcbCategorias, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 250, -1));
+        jpLienzoDeTrabajo.add(jcbFormasDeCoccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 250, -1));
 
         jbCerrar.setBackground(new java.awt.Color(153, 0, 153));
         jbCerrar.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -146,19 +147,19 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jcbCategoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCategoriasActionPerformed
+    private void jcbFormasDeCoccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbFormasDeCoccionActionPerformed
         //Instanciamos receta y recetaData para usar luego
         RecetaData recetaData = new RecetaData();
         Receta receta = new Receta();
 
         //Creamos una variable y le asignamos la categoría seleccionada en la vista
-        String categoriaSeleccionada = (String) jcbCategorias.getSelectedItem();
+        String coccionSeleccionada = (String) jcbFormasDeCoccion.getSelectedItem();
 
         //Borramos las filas evitando repeticiones
         borrarFilas();
 
         for (Receta aux : recetaData.listarReceta()) {
-            if (aux.getCategoria().equals(categoriaSeleccionada)) {
+            if (aux.getFormaDeCoccion().equals(coccionSeleccionada)) {
 
                 //Creo esto para que no aparezca false o true por pantalla
                 String esSinGluten = null;
@@ -168,11 +169,11 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
                     esSinGluten = "Si";
                 }
 
-                modelo.addRow(new Object[]{aux.getTitulo(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion(),esSinGluten});
+                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), esSinGluten});
             }
         }
 
-    }//GEN-LAST:event_jcbCategoriasActionPerformed
+    }//GEN-LAST:event_jcbFormasDeCoccionActionPerformed
 
     private void jbCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCerrarMouseEntered
         jbCerrar.setBackground(naranja);
@@ -194,94 +195,83 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCerrar;
-    private javax.swing.JComboBox<String> jcbCategorias;
+    private javax.swing.JComboBox<String> jcbFormasDeCoccion;
     private javax.swing.JLabel jlFotoDeFondo;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JPanel jpBackground;
     private javax.swing.JPanel jpLienzoDeTrabajo;
-    private javax.swing.JTable jtTablaPorCategorias;
+    private javax.swing.JTable jtTablaPorFormaDeCoccion;
     // End of variables declaration//GEN-END:variables
 
  
-    private void cargarCategoriasAlComboBox() {
+    private void cargarFormasdeCoccionAlComboBox() {
 
-        jcbCategorias.addItem("Selecciona la categoría:");
-        jcbCategorias.addItem(Categoria.AGRIDULCE.toString());
-        jcbCategorias.addItem(Categoria.ARROCES_GUISOS_SALTEADOS_RELLENOS.toString());
-        jcbCategorias.addItem(Categoria.BURGERS_SEITAN_MILANESAS.toString());
-        jcbCategorias.addItem(Categoria.DULCES_TRUFAS.toString());
-        jcbCategorias.addItem(Categoria.ENSALADAS.toString());
-        jcbCategorias.addItem(Categoria.LICORES.toString());
-        jcbCategorias.addItem(Categoria.PANES.toString());
-        jcbCategorias.addItem(Categoria.PARRILLADA_EMPANADAS_BROCHETTES.toString());
-        jcbCategorias.addItem(Categoria.PROBIOTICOS_ESCABECHES.toString());
-        jcbCategorias.addItem(Categoria.QUESOS_PATES.toString());
-        jcbCategorias.addItem(Categoria.SALSAS.toString());
-        jcbCategorias.addItem(Categoria.SMOOTHIES_LECHES.toString());
-        jcbCategorias.addItem(Categoria.SNACKS_FINGERFOOD.toString());
-        jcbCategorias.addItem(Categoria.TARTAS_TORTILLAS.toString());
-        jcbCategorias.addItem(Categoria.TOFU.toString());
-        jcbCategorias.addItem(Categoria.TORTAS_MUFFINS.toString());
-
+        jcbFormasDeCoccion.addItem("Selecciona la forma de cocción:");
+        jcbFormasDeCoccion.addItem(FormaDeCoccion.A_LA_OLLA.toString());
+        jcbFormasDeCoccion.addItem(FormaDeCoccion.A_LA_SARTEN.toString());
+        jcbFormasDeCoccion.addItem(FormaDeCoccion.AL_HORNO.toString());
+        jcbFormasDeCoccion.addItem(FormaDeCoccion.AL_VAPOR.toString());
+        jcbFormasDeCoccion.addItem(FormaDeCoccion.SIN_COCCION.toString());
+        
     }
 
        private void armarTabla() {
         //Agregamos las cabeceras a la tabla
         modelo.addColumn("Título");
+        modelo.addColumn("Categoría");
         modelo.addColumn("Ingrediente Ppal.");
         modelo.addColumn("Horario");
         modelo.addColumn("Tipo de Cocina");
-        modelo.addColumn("Forma de Cocción");
         modelo.addColumn("Sin Gluten");
 
         //Seteamos el modelo a la tabla
-        jtTablaPorCategorias.setModel(modelo);
+        jtTablaPorFormaDeCoccion.setModel(modelo);
 
         //Impedimos el reordenamiento de la cabecera
-        jtTablaPorCategorias.getTableHeader().setReorderingAllowed(false);
+        jtTablaPorFormaDeCoccion.getTableHeader().setReorderingAllowed(false);
 
 //       Para hacer uso de la clase MyRenderer solo es necesario escribir este código en el lugar donde esta el jTable:
-        jtTablaPorCategorias.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorCategorias.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorCategorias.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorCategorias.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorCategorias.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorCategorias.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
 
 //La clase MyRenderer tiene definido un constructor que recibe 2 parámetros Color, los cuales corresponden a los colores de fondo y de fuente.
         DefaultTableCellRenderer tcr0 = new DefaultTableCellRenderer();
 
         //para centrar los datos de la segunda columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorCategorias.getColumnModel().getColumn(1).setCellRenderer(tcr0);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(1).setCellRenderer(tcr0);
 
         //para centrar los datos de la tercera columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorCategorias.getColumnModel().getColumn(2).setCellRenderer(tcr0);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(2).setCellRenderer(tcr0);
 
         //Para centrar los datos de la cuarta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorCategorias.getColumnModel().getColumn(3).setCellRenderer(tcr0);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(3).setCellRenderer(tcr0);
 
         //Para centrar los datos de la quinta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorCategorias.getColumnModel().getColumn(4).setCellRenderer(tcr0);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(4).setCellRenderer(tcr0);
 
         //Para centrar los datos de la sexta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorCategorias.getColumnModel().getColumn(5).setCellRenderer(tcr0);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(5).setCellRenderer(tcr0);
 
         //Para establecer los anchos de columna
-        jtTablaPorCategorias.getColumnModel().getColumn(0).setPreferredWidth(150);
-        jtTablaPorCategorias.getColumnModel().getColumn(1).setPreferredWidth(20);
-        jtTablaPorCategorias.getColumnModel().getColumn(2).setPreferredWidth(50);
-        jtTablaPorCategorias.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jtTablaPorCategorias.getColumnModel().getColumn(4).setPreferredWidth(30);
-        jtTablaPorCategorias.getColumnModel().getColumn(5).setPreferredWidth(8);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(0).setPreferredWidth(150);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(1).setPreferredWidth(50);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(2).setPreferredWidth(30);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(3).setPreferredWidth(50);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(4).setPreferredWidth(25);
+        jtTablaPorFormaDeCoccion.getColumnModel().getColumn(5).setPreferredWidth(5);
 
         //Para hacer blanco el fondo de la tabla
-        jtTablaPorCategorias.setOpaque(true);
-        jtTablaPorCategorias.setBackground(Color.white);
+        jtTablaPorFormaDeCoccion.setOpaque(true);
+        jtTablaPorFormaDeCoccion.setBackground(Color.white);
 
     }
 
@@ -309,7 +299,7 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         //agrega la línea de menú al marco
         popUpMenu.add(menuItem1);
         //agrega el marco con la línea a la tabla
-        jtTablaPorCategorias.setComponentPopupMenu(popUpMenu);
+        jtTablaPorFormaDeCoccion.setComponentPopupMenu(popUpMenu);
     }
 
 }
