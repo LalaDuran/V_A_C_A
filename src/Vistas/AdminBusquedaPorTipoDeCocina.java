@@ -1,7 +1,7 @@
 package Vistas;
 
-import AccesoADatos.RecetaData;
-import Entidades.Receta;
+import AccesoADatos.*;
+import Entidades.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class BusquedaPorGluten extends javax.swing.JPanel {
+public class AdminBusquedaPorTipoDeCocina extends javax.swing.JPanel {
 
     private static Object PdfWriter;
 
@@ -25,17 +25,17 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         }
     };
 
-    public BusquedaPorGluten() {
+    public AdminBusquedaPorTipoDeCocina() {
 
         initComponents();
 
-        //Carga los colores de los radioButtons
-        jrbConGluten.setBackground(Color.white);
-        jrbSinGluten.setBackground(Color.white);
-        jrbConGluten.setForeground(violeta);
-        jrbSinGluten.setForeground(violeta);
+        //Carga los colores del ComboBox
+        jcbTiposDeCocina.setBackground(Color.white);
+        jcbTiposDeCocina.setForeground(violeta);
 
-    
+        //Carga las categorías al comboBox
+        cargarTiposDeCocinaAlComboBox();
+
         //Carga la estructura de la tabla
         armarTabla();
 
@@ -56,10 +56,10 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         jpBackground = new javax.swing.JPanel();
         jpLienzoDeTrabajo = new javax.swing.JPanel();
         jlTitulo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaPorGluten = new javax.swing.JTable();
-        jrbConGluten = new javax.swing.JRadioButton();
-        jrbSinGluten = new javax.swing.JRadioButton();
+        jtTablaPorTiposDeCocina = new javax.swing.JTable();
+        jcbTiposDeCocina = new javax.swing.JComboBox<>();
         jbCerrar = new javax.swing.JButton();
         jlFotoDeFondo = new javax.swing.JLabel();
 
@@ -73,12 +73,17 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         jlTitulo.setFont(new java.awt.Font("Roboto Medium", 1, 18)); // NOI18N
         jlTitulo.setForeground(new java.awt.Color(153, 0, 153));
         jlTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlTitulo.setText("Búsqueda Por Con o Sin Gluten (SinTACC)");
+        jlTitulo.setText("Búsqueda Por Tipo de Cocina");
         jpLienzoDeTrabajo.add(jlTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 30, 630, -1));
 
-        jtTablaPorGluten.setBackground(new java.awt.Color(255, 255, 255));
-        jtTablaPorGluten.setForeground(new java.awt.Color(0, 0, 0));
-        jtTablaPorGluten.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel1.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel1.setText("Categoría:");
+        jpLienzoDeTrabajo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
+
+        jtTablaPorTiposDeCocina.setBackground(new java.awt.Color(255, 255, 255));
+        jtTablaPorTiposDeCocina.setForeground(new java.awt.Color(0, 0, 0));
+        jtTablaPorTiposDeCocina.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,28 +94,21 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaPorGluten.setGridColor(new java.awt.Color(255, 255, 255));
-        jtTablaPorGluten.setSelectionBackground(new java.awt.Color(255, 153, 255));
-        jtTablaPorGluten.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jtTablaPorGluten);
+        jtTablaPorTiposDeCocina.setGridColor(new java.awt.Color(255, 255, 255));
+        jtTablaPorTiposDeCocina.setSelectionBackground(new java.awt.Color(255, 153, 255));
+        jtTablaPorTiposDeCocina.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jtTablaPorTiposDeCocina);
 
         jpLienzoDeTrabajo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 790, 210));
 
-        jrbConGluten.setText("Con Gluten");
-        jrbConGluten.addActionListener(new java.awt.event.ActionListener() {
+        jcbTiposDeCocina.setBackground(new java.awt.Color(255, 255, 255));
+        jcbTiposDeCocina.setForeground(new java.awt.Color(153, 0, 153));
+        jcbTiposDeCocina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbConGlutenActionPerformed(evt);
+                jcbTiposDeCocinaActionPerformed(evt);
             }
         });
-        jpLienzoDeTrabajo.add(jrbConGluten, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, -1, -1));
-
-        jrbSinGluten.setText("Sin Gluten");
-        jrbSinGluten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jrbSinGlutenActionPerformed(evt);
-            }
-        });
-        jpLienzoDeTrabajo.add(jrbSinGluten, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, -1, -1));
+        jpLienzoDeTrabajo.add(jcbTiposDeCocina, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 70, 250, -1));
 
         jbCerrar.setBackground(new java.awt.Color(153, 0, 153));
         jbCerrar.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
@@ -149,51 +147,33 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jrbConGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbConGlutenActionPerformed
-         //Instanciamos recetaData para usar luego
-        RecetaData recetaD = new RecetaData();
-                
-        //Si está seleccionado el botón, habilitamos e inhabilitamos el otro
-        if (jrbConGluten.isSelected()) {
-            jrbSinGluten.setSelected(false);       
-        }
+    private void jcbTiposDeCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbTiposDeCocinaActionPerformed
+        //Instanciamos receta y recetaData para usar luego
+        RecetaData recetaData = new RecetaData();
+        Receta receta = new Receta();
+
+        //Creamos una variable y le asignamos el tipo seleccionado en la vista
+        String TipoSeleccionado = (String) jcbTiposDeCocina.getSelectedItem();
 
         //Borramos las filas evitando repeticiones
         borrarFilas();
 
-        //Listamos las recetas en la tabla
-        for (Receta aux : recetaD.listarReceta()) {
-            //si la receta listada no es sintacc, que la agregue a la tabla
-            if (aux.isSinTACC()==false){
-                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion()});
+        for (Receta aux : recetaData.listarReceta()) {
+            if (aux.getTipoDeCocina().equals(TipoSeleccionado)) {
+
+                //Creo esto para que no aparezca false o true por pantalla
+                String esSinGluten = null;
+                if (aux.isSinTACC() == false) {
+                    esSinGluten = "No";
+                } else {
+                    esSinGluten = "Si";
+                }
+
+                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getFormaDeCoccion(), esSinGluten});
             }
-            
-        }
-        
-        
-    }//GEN-LAST:event_jrbConGlutenActionPerformed
-
-    private void jrbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSinGlutenActionPerformed
-         //Instanciamos recetaData para usar luego
-        RecetaData recetaD = new RecetaData();
-                
-        //Si está seleccionado el botón, habilitamos e inhabilitamos el otro
-        if (jrbSinGluten.isSelected()) {
-            jrbConGluten.setSelected(false);       
         }
 
-        //Borramos las filas evitando repeticiones
-        borrarFilas();
-
-        //Listamos las recetas en la tabla
-        for (Receta aux : recetaD.listarReceta()) {
-            //si la receta listada es sintacc, que la agregue a la tabla
-            if (aux.isSinTACC() == true){
-                modelo.addRow(new Object[]{aux.getTitulo(), aux.getCategoria(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion()});
-            }
-            
-        }
-    }//GEN-LAST:event_jrbSinGlutenActionPerformed
+    }//GEN-LAST:event_jcbTiposDeCocinaActionPerformed
 
     private void jbCerrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCerrarMouseEntered
         jbCerrar.setBackground(naranja);
@@ -207,81 +187,98 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCerrarMouseExited
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-        MenuPrincipal.volverALaFotoDeFondo();
+        AdminMenuPrincipal.volverALaFotoDeFondo();
     }//GEN-LAST:event_jbCerrarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbCerrar;
+    private javax.swing.JComboBox<String> jcbTiposDeCocina;
     private javax.swing.JLabel jlFotoDeFondo;
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JPanel jpBackground;
     private javax.swing.JPanel jpLienzoDeTrabajo;
-    private javax.swing.JRadioButton jrbConGluten;
-    private javax.swing.JRadioButton jrbSinGluten;
-    private javax.swing.JTable jtTablaPorGluten;
+    private javax.swing.JTable jtTablaPorTiposDeCocina;
     // End of variables declaration//GEN-END:variables
 
-    private void armarTabla() {
+ 
+
+    private void cargarTiposDeCocinaAlComboBox() {
+
+        jcbTiposDeCocina.addItem("Selecciona el tipo de cocina:");
+        jcbTiposDeCocina.addItem(TipoDeCocina.AMERICANA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.ARABE.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.CRIOLLA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.ESPAÑOLA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.EUROPEA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.FESTIVA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.HINDU.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.ITALIANA.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.ORIENTAL.toString());
+        jcbTiposDeCocina.addItem(TipoDeCocina.UNIVERSAL.toString());
+        
+    }
+
+       private void armarTabla() {
         //Agregamos las cabeceras a la tabla
         modelo.addColumn("Título");
         modelo.addColumn("Categoría");
         modelo.addColumn("Ingrediente Ppal.");
         modelo.addColumn("Horario");
-        modelo.addColumn("Tipo de Cocina");
         modelo.addColumn("Forma de Cocción");
+        modelo.addColumn("Sin Gluten");
 
         //Seteamos el modelo a la tabla
-        jtTablaPorGluten.setModel(modelo);
+        jtTablaPorTiposDeCocina.setModel(modelo);
 
         //Impedimos el reordenamiento de la cabecera
-        jtTablaPorGluten.getTableHeader().setReorderingAllowed(false);
+        jtTablaPorTiposDeCocina.getTableHeader().setReorderingAllowed(false);
 
 //       Para hacer uso de la clase MyRenderer solo es necesario escribir este código en el lugar donde esta el jTable:
-        jtTablaPorGluten.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorGluten.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorGluten.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorGluten.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorGluten.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorGluten.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
 //La clase MyRenderer tiene definido un constructor que recibe 2 parámetros Color, los cuales corresponden a los colores de fondo y de fuente.
+        
+
         DefaultTableCellRenderer tcr0 = new DefaultTableCellRenderer();
 
         //para centrar los datos de la segunda columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorGluten.getColumnModel().getColumn(1).setCellRenderer(tcr0);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(1).setCellRenderer(tcr0);
 
         //para centrar los datos de la tercera columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorGluten.getColumnModel().getColumn(2).setCellRenderer(tcr0);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(2).setCellRenderer(tcr0);
 
         //Para centrar los datos de la cuarta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorGluten.getColumnModel().getColumn(3).setCellRenderer(tcr0);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(3).setCellRenderer(tcr0);
 
         //Para centrar los datos de la quinta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorGluten.getColumnModel().getColumn(4).setCellRenderer(tcr0);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(4).setCellRenderer(tcr0);
 
         //Para centrar los datos de la sexta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorGluten.getColumnModel().getColumn(5).setCellRenderer(tcr0);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(5).setCellRenderer(tcr0);
 
-        
         //Para establecer los anchos de columna
-        jtTablaPorGluten.getColumnModel().getColumn(0).setPreferredWidth(130);
-        jtTablaPorGluten.getColumnModel().getColumn(1).setPreferredWidth(20);
-        jtTablaPorGluten.getColumnModel().getColumn(2).setPreferredWidth(48);
-        jtTablaPorGluten.getColumnModel().getColumn(3).setPreferredWidth(18);
-        jtTablaPorGluten.getColumnModel().getColumn(4).setPreferredWidth(18);
-        jtTablaPorGluten.getColumnModel().getColumn(5).setPreferredWidth(25);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(0).setPreferredWidth(130);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(1).setPreferredWidth(70);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(2).setPreferredWidth(30);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(3).setPreferredWidth(30);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(4).setPreferredWidth(35);
+        jtTablaPorTiposDeCocina.getColumnModel().getColumn(5).setPreferredWidth(5);
 
         //Para hacer blanco el fondo de la tabla
-        jtTablaPorGluten.setOpaque(true);
-        jtTablaPorGluten.setBackground(Color.white);
+        jtTablaPorTiposDeCocina.setOpaque(true);
+        jtTablaPorTiposDeCocina.setBackground(Color.white);
 
     }
 
@@ -291,7 +288,6 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
             modelo.removeRow(0);
         }
     }
-
     
     //para agregar la ventana pop-up a la tabla
     public void popUpTable() {
@@ -304,16 +300,16 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         //agrega la línea de menú al marco
         popUpMenu.add(menuItem1);
         //agrega el marco con la línea a la tabla
-        jtTablaPorGluten.setComponentPopupMenu(popUpMenu);
+        jtTablaPorTiposDeCocina.setComponentPopupMenu(popUpMenu);
         
         //Agrega la acción al popup
         menuItem1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 RecetaData recetaD = new RecetaData();
-                Receta recetaAImprimir = recetaD.buscarRecetaPorTitulo((String)jtTablaPorGluten.getValueAt(jtTablaPorGluten.getSelectedRow(),0));
+                Receta recetaAImprimir = recetaD.buscarRecetaPorTitulo((String)jtTablaPorTiposDeCocina.getValueAt(jtTablaPorTiposDeCocina.getSelectedRow(),0));
                 guardarWord(recetaAImprimir.toString());
-                
+
             }
         });
         

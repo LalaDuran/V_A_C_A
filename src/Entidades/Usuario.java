@@ -4,16 +4,22 @@ public class Usuario {
 
     private int id_usuario;
     private String nombre;
-    private String contrasenia;
+    private int dni;
     private boolean administrador;
 
-    public Usuario(int id_usuario, String nombre, String contrasenia, boolean administrador) {
+    public Usuario(int id_usuario, String nombre, int dni, boolean administrador) {
         this.id_usuario = id_usuario;
         this.nombre = nombre;
-        this.contrasenia = contrasenia;
+        this.dni = dni;
         this.administrador = administrador;
     }
 
+    public Usuario(String nombre, int dni, boolean administrador) {
+        this.nombre = nombre;
+        this.dni = dni;
+        this.administrador = administrador;
+    }
+    
     public Usuario() {
     }
 
@@ -33,12 +39,12 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getContrasenia() {
-        return contrasenia;
+    public int getDni() {
+        return dni;
     }
 
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
     public boolean isAdministrador() {

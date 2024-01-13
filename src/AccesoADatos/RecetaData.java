@@ -1,7 +1,6 @@
 package AccesoADatos;
 
-import Entidades.Categoria;
-import Entidades.Receta;
+import Entidades.*;
 import java.sql.*;
 import java.util.*;
 import javax.swing.JOptionPane;
@@ -52,7 +51,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta1'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -91,7 +90,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta2'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -118,7 +117,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta3'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         }catch (NullPointerException ex){
             JOptionPane.showMessageDialog(null, ex.getStackTrace());
         }
@@ -165,7 +164,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta4'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         }catch (NullPointerException ex){
             JOptionPane.showMessageDialog(null, ex.getStackTrace());
         }
@@ -212,7 +211,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta5'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -259,7 +258,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta6'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -307,7 +306,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta7'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -355,7 +354,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta8'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
@@ -403,57 +402,13 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta9'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }
         return recetaABuscar;
     }
 
-//    public Receta buscarRecetaConGluten() {
-//        //Genera el comando SQL 
-//        String sql = "SELECT titulo, ingredientes, cuerpo, tipo_de_cocina, categoria, ingrediente_principal, tipo_de_comida, forma_de_coccion "
-//                + "FROM receta "
-//                + "WHERE sin_tacc = 0 ";
-//
-//        //Creamos una receta en null para setearla luego
-//        Receta recetaABuscar = null;
-//
-//        try {
-//            //Prepara el comando SQL
-//            PreparedStatement ps = con.prepareStatement(sql);
-//
-//            //Ejecutamos el comando SQL que devuelve un ResulSet; creamos variable
-//            ResultSet rs = ps.executeQuery();
-//
-//            if (rs.next()) {
-//                //Instanciamos recetaABuscar y seteamos sus atributos
-//                recetaABuscar = new Receta();
-//
-//                recetaABuscar.setSinTACC(rs.getBoolean("sin_tacc"));
-//                recetaABuscar.setTitulo(rs.getString("titulo"));
-//                recetaABuscar.setIngredientes(rs.getString("ingredientes"));
-//                recetaABuscar.setCuerpo(rs.getString("cuerpo"));
-//                recetaABuscar.setTipoDeCocina(rs.getString("tipo_de_cocina"));
-//                recetaABuscar.setCategoria(rs.getString("categoria"));
-//                recetaABuscar.setIngredientePrincipal(rs.getString("ingrediente_principal"));
-//                recetaABuscar.setTipoDeComida(rs.getString("tipo_de_comida"));
-//                recetaABuscar.setFormaDeCoccion(rs.getString("forma_de_coccion"));
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "No existe receta");
-//            }
-//
-//            //Liberamos recursos
-//            ps.close();
-//
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta8'");
-//        } catch (NullPointerException ex) {
-//
-//        }
-//        return recetaABuscar;
-//    }
     
     public List<Receta> listarReceta() {
         //Genera el comando SQL con los valores dinámicos
@@ -492,7 +447,7 @@ public class RecetaData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta10'");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'receta'");
         } catch (NullPointerException ex) {
 
         }

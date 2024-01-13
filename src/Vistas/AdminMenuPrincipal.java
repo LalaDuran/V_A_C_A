@@ -6,12 +6,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
-public class MenuPrincipal extends javax.swing.JFrame {
+public class AdminMenuPrincipal extends javax.swing.JFrame {
 
     Color violeta = new Color(153, 0, 153);
     Color naranja = new Color(255, 153, 0);
 
-    public MenuPrincipal() {
+    public AdminMenuPrincipal() {
         initComponents();
 
         //Impide el cambio de tamaño de la ventana
@@ -50,7 +50,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorTipoDeCocina = new javax.swing.JButton();
         jbSinGluten = new javax.swing.JButton();
         jbBusquedaCombinada = new javax.swing.JButton();
+        jbABMRecetas = new javax.swing.JButton();
         jbPorFormaDeCoccion = new javax.swing.JButton();
+        jbABMUsuarios = new javax.swing.JButton();
         jpCabecera = new javax.swing.JPanel();
         jpContent = new javax.swing.JPanel();
         jlBienvenida = new javax.swing.JLabel();
@@ -80,6 +82,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbPorCategoria.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jbPorCategoria.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         jbPorCategoria.setIconTextGap(6);
+        jbPorCategoria.setPreferredSize(new java.awt.Dimension(210, 40));
         jbPorCategoria.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jbPorCategoriaMouseEntered(evt);
@@ -222,6 +225,32 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbABMRecetas.setBackground(new java.awt.Color(153, 0, 153));
+        jbABMRecetas.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbABMRecetas.setForeground(new java.awt.Color(255, 255, 255));
+        jbABMRecetas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/administración de 50.png"))); // NOI18N
+        jbABMRecetas.setText("ABM Recetas");
+        jbABMRecetas.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        jbABMRecetas.setBorderPainted(false);
+        jbABMRecetas.setContentAreaFilled(false);
+        jbABMRecetas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbABMRecetas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbABMRecetas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbABMRecetas.setIconTextGap(16);
+        jbABMRecetas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbABMRecetasMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbABMRecetasMouseExited(evt);
+            }
+        });
+        jbABMRecetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbABMRecetasActionPerformed(evt);
+            }
+        });
+
         jbPorFormaDeCoccion.setBackground(new java.awt.Color(153, 0, 153));
         jbPorFormaDeCoccion.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jbPorFormaDeCoccion.setForeground(new java.awt.Color(255, 255, 255));
@@ -247,51 +276,77 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jbABMUsuarios.setBackground(new java.awt.Color(153, 0, 153));
+        jbABMUsuarios.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jbABMUsuarios.setForeground(new java.awt.Color(255, 255, 255));
+        jbABMUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/administración de 50.png"))); // NOI18N
+        jbABMUsuarios.setText("ABM Usuarios");
+        jbABMUsuarios.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 10, 1, 1, new java.awt.Color(0, 0, 0)));
+        jbABMUsuarios.setBorderPainted(false);
+        jbABMUsuarios.setContentAreaFilled(false);
+        jbABMUsuarios.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbABMUsuarios.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jbABMUsuarios.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jbABMUsuarios.setIconTextGap(16);
+        jbABMUsuarios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jbABMUsuariosMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jbABMUsuariosMouseExited(evt);
+            }
+        });
+        jbABMUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbABMUsuariosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpMenuLayout = new javax.swing.GroupLayout(jpMenu);
         jpMenu.setLayout(jpMenuLayout);
         jpMenuLayout.setHorizontalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jlLogo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jpMenuLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jpMenuLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jpMenuLayout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jlLogo)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                    .addComponent(jbPorCategoria, javax.swing.GroupLayout.DEFAULT_SIZE, 278, Short.MAX_VALUE)
+                    .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbABMRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbABMUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         jpMenuLayout.setVerticalGroup(
             jpMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpMenuLayout.createSequentialGroup()
-                .addGap(11, 11, 11)
+                .addGap(24, 24, 24)
                 .addComponent(jlLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbPorCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jbPorIngrediente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jbPorHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbPorTipoDeCocina, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbPorFormaDeCoccion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbSinGluten, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4)
-                .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbBusquedaCombinada, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbABMRecetas, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbABMUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -440,12 +495,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorCategoriaMouseExited
 
     private void jbPorCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorCategoriaActionPerformed
-        BusquedaPorCategoria bpcat = new BusquedaPorCategoria();
-        bpcat.setSize(980, 654);
-        bpcat.setLocation(0, 0);
+        AdminBusquedaPorCategoria abpcat = new AdminBusquedaPorCategoria();
+        abpcat.setSize(980, 654);
+        abpcat.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bpcat, BorderLayout.CENTER);
+        jpContent.add(abpcat, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbPorCategoriaActionPerformed
@@ -462,12 +517,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorIngredienteMouseExited
 
     private void jbPorIngredienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorIngredienteActionPerformed
-        BusquedaPorIngrediente bping = new BusquedaPorIngrediente();
-        bping.setSize(980, 654);
-        bping.setLocation(0, 0);
+        AdminBusquedaPorIngrediente abping = new AdminBusquedaPorIngrediente();
+        abping.setSize(980, 654);
+        abping.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bping, BorderLayout.CENTER);
+        jpContent.add(abping, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbPorIngredienteActionPerformed
@@ -484,12 +539,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorHorarioMouseExited
 
     private void jbPorHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorHorarioActionPerformed
-        BusquedaPorHorario bphora = new BusquedaPorHorario();
-        bphora.setSize(980, 654);
-        bphora.setLocation(0, 0);
+        AdminBusquedaPorHorario abphora = new AdminBusquedaPorHorario();
+        abphora.setSize(980, 654);
+        abphora.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bphora, BorderLayout.CENTER);
+        jpContent.add(abphora, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbPorHorarioActionPerformed
@@ -506,12 +561,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorTipoDeCocinaMouseExited
 
     private void jbPorTipoDeCocinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorTipoDeCocinaActionPerformed
-        BusquedaPorTipoDeCocina bpTipoCocina = new BusquedaPorTipoDeCocina();
-        bpTipoCocina.setSize(980, 654);
-        bpTipoCocina.setLocation(0, 0);
+        AdminBusquedaPorTipoDeCocina abpTipoCocina = new AdminBusquedaPorTipoDeCocina();
+        abpTipoCocina.setSize(980, 654);
+        abpTipoCocina.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bpTipoCocina, BorderLayout.CENTER);
+        jpContent.add(abpTipoCocina, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbPorTipoDeCocinaActionPerformed
@@ -528,12 +583,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbSinGlutenMouseExited
 
     private void jbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSinGlutenActionPerformed
-        BusquedaPorGluten bpgluten = new BusquedaPorGluten();
-        bpgluten.setSize(980, 654);
-        bpgluten.setLocation(0, 0);
+        AdminBusquedaPorGluten abpgluten = new AdminBusquedaPorGluten();
+        abpgluten.setSize(980, 654);
+        abpgluten.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bpgluten, BorderLayout.CENTER);
+        jpContent.add(abpgluten, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbSinGlutenActionPerformed
@@ -550,15 +605,37 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbBusquedaCombinadaMouseExited
 
     private void jbBusquedaCombinadaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBusquedaCombinadaActionPerformed
-        BusquedaCombinada bcombi = new BusquedaCombinada();
-        bcombi.setSize(980, 654);
-        bcombi.setLocation(0, 0);
+        AdminBusquedaCombinada abcombi = new AdminBusquedaCombinada();
+        abcombi.setSize(980, 654);
+        abcombi.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bcombi, BorderLayout.CENTER);
+        jpContent.add(abcombi, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbBusquedaCombinadaActionPerformed
+
+    private void jbABMRecetasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbABMRecetasMouseEntered
+        // Seteamos letras en naranja si se acerca el mouse
+        jbABMRecetas.setForeground(naranja);
+    }//GEN-LAST:event_jbABMRecetasMouseEntered
+
+    private void jbABMRecetasMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbABMRecetasMouseExited
+        // Seteamos la vuelta al violeta y blanco cuando el mouse se aleja
+        jbABMRecetas.setBackground(violeta);
+        jbABMRecetas.setForeground(java.awt.Color.white);
+    }//GEN-LAST:event_jbABMRecetasMouseExited
+
+    private void jbABMRecetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbABMRecetasActionPerformed
+        AdminABMRecetas adm = new AdminABMRecetas();
+        adm.setSize(980, 654);
+        adm.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(adm, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    }//GEN-LAST:event_jbABMRecetasActionPerformed
 
     private void jbPorFormaDeCoccionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbPorFormaDeCoccionMouseEntered
        // Seteamos letras en naranja si se acerca el mouse
@@ -572,23 +649,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jbPorFormaDeCoccionMouseExited
 
     private void jbPorFormaDeCoccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPorFormaDeCoccionActionPerformed
-        BusquedaPorFormaDeCoccion bpcoccion = new BusquedaPorFormaDeCoccion();
-        bpcoccion.setSize(980, 654);
-        bpcoccion.setLocation(0, 0);
+        AdminBusquedaPorFormaDeCoccion abpcoccion = new AdminBusquedaPorFormaDeCoccion();
+        abpcoccion.setSize(980, 654);
+        abpcoccion.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(bpcoccion, BorderLayout.CENTER);
+        jpContent.add(abpcoccion, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jbPorFormaDeCoccionActionPerformed
 
     private void jpCabeceraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpCabeceraMouseClicked
-        Principal ppal = new Principal();
-        ppal.setSize(980, 654);
-        ppal.setLocation(0, 0);
+        AdminPrincipal appal = new AdminPrincipal();
+        appal.setSize(980, 654);
+        appal.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(ppal, BorderLayout.CENTER);
+        jpContent.add(appal, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     }//GEN-LAST:event_jpCabeceraMouseClicked
@@ -608,6 +685,28 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jbCerrarApp.setForeground(Color.white);
     }//GEN-LAST:event_jbCerrarAppMouseExited
 
+    private void jbABMUsuariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbABMUsuariosMouseEntered
+        // Seteamos letras en naranja si se acerca el mouse
+        jbABMUsuarios.setForeground(naranja);
+    }//GEN-LAST:event_jbABMUsuariosMouseEntered
+
+    private void jbABMUsuariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbABMUsuariosMouseExited
+        // Seteamos la vuelta al violeta y blanco cuando el mouse se aleja
+        jbABMUsuarios.setBackground(violeta);
+        jbABMUsuarios.setForeground(java.awt.Color.white);
+    }//GEN-LAST:event_jbABMUsuariosMouseExited
+
+    private void jbABMUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbABMUsuariosActionPerformed
+        AdminABMUsuarios adUsuarios = new AdminABMUsuarios();
+        adUsuarios.setSize(980, 654);
+        adUsuarios.setLocation(0, 0);
+
+        jpContent.removeAll();
+        jpContent.add(adUsuarios, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
+    }//GEN-LAST:event_jbABMUsuariosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -625,14 +724,70 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdminMenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -645,12 +800,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new AdminMenuPrincipal().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbABMRecetas;
+    private javax.swing.JButton jbABMUsuarios;
     private javax.swing.JButton jbBusquedaCombinada;
     private javax.swing.JButton jbCerrarApp;
     private javax.swing.JButton jbPorCategoria;
@@ -670,12 +827,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public static void volverALaFotoDeFondo(){
-        Principal ppal = new Principal();
-        ppal.setSize(980, 654);
-        ppal.setLocation(0, 0);
+        AdminPrincipal appal = new AdminPrincipal();
+        appal.setSize(980, 654);
+        appal.setLocation(0, 0);
 
         jpContent.removeAll();
-        jpContent.add(ppal, BorderLayout.CENTER);
+        jpContent.add(appal, BorderLayout.CENTER);
         jpContent.revalidate();
         jpContent.repaint();
     

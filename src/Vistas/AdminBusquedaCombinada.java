@@ -1,6 +1,6 @@
 package Vistas;
 
-import AccesoADatos.RecetaData;
+import AccesoADatos.*;
 import Entidades.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class BusquedaCombinada extends javax.swing.JPanel {
+public class AdminBusquedaCombinada extends javax.swing.JPanel {
 
     Color violeta = new Color(153, 0, 153);
     Color naranja = new Color(255, 153, 0);
@@ -24,7 +24,7 @@ public class BusquedaCombinada extends javax.swing.JPanel {
         }
     };
 
-    public BusquedaCombinada() {
+    public AdminBusquedaCombinada() {
 
         initComponents();
 
@@ -261,7 +261,7 @@ public class BusquedaCombinada extends javax.swing.JPanel {
             formaDeCoccionABuscar = (String) jcbFormaDeCoccion.getSelectedItem();
         }   
         
-        //Definimos la variable asociada al los botones
+        //Definimos la variable asociada a los botones
         boolean sinGlutenABuscar = false;
         if (jrbConGluten.isSelected()){
             sinGlutenABuscar = false;
@@ -328,7 +328,7 @@ public class BusquedaCombinada extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCerrarMouseExited
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-        MenuPrincipal.volverALaFotoDeFondo();
+        AdminMenuPrincipal.volverALaFotoDeFondo();
     }//GEN-LAST:event_jbCerrarActionPerformed
 
 

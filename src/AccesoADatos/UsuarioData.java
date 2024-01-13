@@ -18,7 +18,7 @@ public class UsuarioData {
 
     public void guardarUsuario(Usuario usuario) {
         //Genera el comando SQL con los valores dinámicos
-        String sql = "INSERT INTO usuario (nombre, contrasenia, administrador) "
+        String sql = "INSERT INTO usuario (nombre, dni, administrador) "
                 + "VALUES (?,?,?)";
 
         try {
@@ -27,7 +27,7 @@ public class UsuarioData {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             //Asignamos los valores a los parámetros dinámicos 
             ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getContrasenia());
+            ps.setInt(2, usuario.getDni());
             ps.setBoolean(3, usuario.isAdministrador());
 
             //Ejecutamos el comando SQL
@@ -55,7 +55,7 @@ public class UsuarioData {
     public void modificarUsuario(Usuario usuario) {
         //Genera el comando SQL con los valores dinámicos
         String sql = "UPDATE usuario "
-                + "SET nombre = ?, contrasenia = ?, administrador = ? "
+                + "SET nombre = ?, dni = ?, administrador = ? "
                 + "WHERE id_usuario = ?";
 
         try {
@@ -64,7 +64,7 @@ public class UsuarioData {
 
             //Asignamos los valores a los parámetros dinámicos
             ps.setString(1, usuario.getNombre());
-            ps.setString(2, usuario.getContrasenia());
+            ps.setInt(2, usuario.getDni());
             ps.setBoolean(3, usuario.isAdministrador());
             ps.setInt(4, usuario.getId_usuario());
 
@@ -87,7 +87,7 @@ public class UsuarioData {
 
     public List<Usuario> listarUsuario() {
         //Genera el comando SQL con los valores dinámicos
-        String sql = "SELECT id_usuario, nombre, contrasenia, administrador "
+        String sql = "SELECT id_usuario, nombre, dni, administrador "
                 + "FROM usuario ";
 
         //Instanciamos el arraylist que usaremos luego
@@ -105,7 +105,7 @@ public class UsuarioData {
                 Usuario usuarioABuscar = new Usuario();
                 usuarioABuscar.setId_usuario(rs.getInt("id_usuario"));
                 usuarioABuscar.setNombre(rs.getString("nombre"));
-                usuarioABuscar.setContrasenia(rs.getString("contrasenia"));
+                usuarioABuscar.setDni(rs.getInt("dni"));
                 usuarioABuscar.setAdministrador(rs.getBoolean("administrador"));
 
                 //Agregamos el usuario encontrado al arraylist
@@ -122,5 +122,75 @@ public class UsuarioData {
         }
         return usuarios;
     }
+ 
+    
+    public Usuario buscarUsuarioPorID(int id) {
+        
+        String sql = "SELECT nombre, dni, administrador FROM usuario WHERE id_usuario = ?";
+        //Creamos un usuario en null para setearlo luego
+        Usuario usuarioABuscar = null;
 
+        try {
+            //Prepara el comando SQL
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            //Asignamos el valor al parámetro dinámico
+            ps.setInt(1, id); 
+            
+            //Ejecutamos el comando SQL que devuelve un ResulSet; creamos variable
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                //Instanciamos usuarioABuscar y seteamos
+                usuarioABuscar = new Usuario();
+                
+                usuarioABuscar.setId_usuario(id);
+                usuarioABuscar.setNombre(rs.getString("nombre"));
+                usuarioABuscar.setDni(rs.getInt("dni"));
+                usuarioABuscar.setAdministrador(rs.getBoolean("administrador"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe usuario con ese ID");
+            }
+
+            //Liberamos recursos
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'usuario'");
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, ex.getStackTrace());
+        }
+        return usuarioABuscar;
+    }
+
+    public void eliminarUsuario (int id){
+        String sql = "DELETE FROM usuario WHERE id_usuario = ? ";
+
+        try {
+            //Prepara el comando SQL
+            PreparedStatement ps = con.prepareStatement(sql);
+
+            //Asignamos el valor al parámetro dinámico
+            ps.setInt(1, id);
+
+            //Ejecutamos el comando SQL que devuelve un entero; creamos variable
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Usuario eliminado");
+            }
+
+            //Liberamos recursos
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla 'usuario'");
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, ex.getStackTrace());
+        }
+        
+    }
+    
+    
 }

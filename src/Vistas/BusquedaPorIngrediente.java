@@ -1,11 +1,12 @@
 package Vistas;
 
 import AccesoADatos.RecetaData;
-import Entidades.Ingredientes;
-import Entidades.Receta;
+import Entidades.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -57,7 +58,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         jlTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtTablaPorINgredientes = new javax.swing.JTable();
+        jtTablaPorIngPpal = new javax.swing.JTable();
         jcbIngredientes = new javax.swing.JComboBox<>();
         jbCerrar = new javax.swing.JButton();
         jlFotoDeFondo = new javax.swing.JLabel();
@@ -80,9 +81,9 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         jLabel1.setText("Categoría:");
         jpLienzoDeTrabajo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, -1, -1));
 
-        jtTablaPorINgredientes.setBackground(new java.awt.Color(255, 255, 255));
-        jtTablaPorINgredientes.setForeground(new java.awt.Color(0, 0, 0));
-        jtTablaPorINgredientes.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaPorIngPpal.setBackground(new java.awt.Color(255, 255, 255));
+        jtTablaPorIngPpal.setForeground(new java.awt.Color(0, 0, 0));
+        jtTablaPorIngPpal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -93,10 +94,10 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jtTablaPorINgredientes.setGridColor(new java.awt.Color(255, 255, 255));
-        jtTablaPorINgredientes.setSelectionBackground(new java.awt.Color(255, 153, 255));
-        jtTablaPorINgredientes.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane1.setViewportView(jtTablaPorINgredientes);
+        jtTablaPorIngPpal.setGridColor(new java.awt.Color(255, 255, 255));
+        jtTablaPorIngPpal.setSelectionBackground(new java.awt.Color(255, 153, 255));
+        jtTablaPorIngPpal.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane1.setViewportView(jtTablaPorIngPpal);
 
         jpLienzoDeTrabajo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 790, 210));
 
@@ -199,7 +200,7 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
     private javax.swing.JLabel jlTitulo;
     private javax.swing.JPanel jpBackground;
     private javax.swing.JPanel jpLienzoDeTrabajo;
-    private javax.swing.JTable jtTablaPorINgredientes;
+    private javax.swing.JTable jtTablaPorIngPpal;
     // End of variables declaration//GEN-END:variables
 
    
@@ -293,18 +294,18 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         modelo.addColumn("Sin Gluten");
 
         //Seteamos el modelo a la tabla
-        jtTablaPorINgredientes.setModel(modelo);
+        jtTablaPorIngPpal.setModel(modelo);
 
         //Impedimos el reordenamiento de la cabecera
-        jtTablaPorINgredientes.getTableHeader().setReorderingAllowed(false);
+        jtTablaPorIngPpal.getTableHeader().setReorderingAllowed(false);
 
 //       Para hacer uso de la clase MyRenderer solo es necesario escribir este código en el lugar donde esta el jTable:
-        jtTablaPorINgredientes.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
-        jtTablaPorINgredientes.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(0).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(1).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(2).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(3).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(4).setHeaderRenderer(new MyRenderer(violeta, Color.white));
+        jtTablaPorIngPpal.getColumnModel().getColumn(5).setHeaderRenderer(new MyRenderer(violeta, Color.white));
 
 //La clase MyRenderer tiene definido un constructor que recibe 2 parámetros Color, los cuales corresponden a los colores de fondo y de fuente.
 
@@ -313,36 +314,36 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
 
         //para centrar los datos de la segunda columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setCellRenderer(tcr0);
+        jtTablaPorIngPpal.getColumnModel().getColumn(1).setCellRenderer(tcr0);
 
         //para centrar los datos de la tercera columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setCellRenderer(tcr0);
+        jtTablaPorIngPpal.getColumnModel().getColumn(2).setCellRenderer(tcr0);
 
         //Para centrar los datos de la cuarta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setCellRenderer(tcr0);
+        jtTablaPorIngPpal.getColumnModel().getColumn(3).setCellRenderer(tcr0);
 
         //Para centrar los datos de la quinta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setCellRenderer(tcr0);
+        jtTablaPorIngPpal.getColumnModel().getColumn(4).setCellRenderer(tcr0);
 
         //Para centrar los datos de la sexta columna
         tcr0.setHorizontalAlignment(SwingConstants.CENTER);
-        jtTablaPorINgredientes.getColumnModel().getColumn(5).setCellRenderer(tcr0);
+        jtTablaPorIngPpal.getColumnModel().getColumn(5).setCellRenderer(tcr0);
 
         
         //Para establecer los anchos de columna
-        jtTablaPorINgredientes.getColumnModel().getColumn(0).setPreferredWidth(130);
-        jtTablaPorINgredientes.getColumnModel().getColumn(1).setPreferredWidth(90);
-        jtTablaPorINgredientes.getColumnModel().getColumn(2).setPreferredWidth(50);
-        jtTablaPorINgredientes.getColumnModel().getColumn(3).setPreferredWidth(20);
-        jtTablaPorINgredientes.getColumnModel().getColumn(4).setPreferredWidth(25);
-        jtTablaPorINgredientes.getColumnModel().getColumn(5).setPreferredWidth(10);
+        jtTablaPorIngPpal.getColumnModel().getColumn(0).setPreferredWidth(130);
+        jtTablaPorIngPpal.getColumnModel().getColumn(1).setPreferredWidth(90);
+        jtTablaPorIngPpal.getColumnModel().getColumn(2).setPreferredWidth(50);
+        jtTablaPorIngPpal.getColumnModel().getColumn(3).setPreferredWidth(20);
+        jtTablaPorIngPpal.getColumnModel().getColumn(4).setPreferredWidth(25);
+        jtTablaPorIngPpal.getColumnModel().getColumn(5).setPreferredWidth(10);
 
         //Para hacer blanco el fondo de la tabla
-        jtTablaPorINgredientes.setOpaque(true);
-        jtTablaPorINgredientes.setBackground(Color.white);
+        jtTablaPorIngPpal.setOpaque(true);
+        jtTablaPorIngPpal.setBackground(Color.white);
 
     }
 
@@ -360,18 +361,51 @@ public class BusquedaPorIngrediente extends javax.swing.JPanel {
         //crea la carcaza vacía, el marco
         JPopupMenu popUpMenu = new JPopupMenu();
         //crea la línea de menú
-        JMenuItem menuItem1 = new JMenuItem("Visualizar la receta", new ImageIcon(getClass().getResource("/Imagenes/lupa.png")));
+        JMenuItem menuItem1 = new JMenuItem("Generar Receta.doc", new ImageIcon(getClass().getResource("/Imagenes/expediente de 20x20.png")));
 
-        menuItem1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(null, "Esperando un pdf", "Receta", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
+        
         //agrega la línea de menú al marco
         popUpMenu.add(menuItem1);
         //agrega el marco con la línea a la tabla
-        jtTablaPorINgredientes.setComponentPopupMenu(popUpMenu);
+        jtTablaPorIngPpal.setComponentPopupMenu(popUpMenu);
+        
+        //Agrega la acción al popup
+        menuItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                RecetaData recetaD = new RecetaData();
+                Receta recetaAImprimir = recetaD.buscarRecetaPorTitulo((String)jtTablaPorIngPpal.getValueAt(jtTablaPorIngPpal.getSelectedRow(),0));
+                guardarWord(recetaAImprimir.toString());
+                
+            }
+        });
+        
+    }
+
+    public void guardarWord(final String linea){
+        
+        File archivo;
+        PrintWriter escribir;
+        
+        archivo = new File ("C:\\Users\\Adriana\\Desktop\\Receta.doc");
+        if (!archivo.exists()){
+            try{
+                archivo.createNewFile();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            try{
+                escribir = new PrintWriter(archivo,"utf-8");
+                escribir.println(linea);
+                escribir.close();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        
     }
 
 }

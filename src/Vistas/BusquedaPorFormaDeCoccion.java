@@ -1,12 +1,12 @@
 package Vistas;
 
 import AccesoADatos.RecetaData;
-import Entidades.Categoria;
-import Entidades.FormaDeCoccion;
-import Entidades.Receta;
+import Entidades.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.PrintWriter;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -288,18 +288,51 @@ public class BusquedaPorFormaDeCoccion extends javax.swing.JPanel {
         //crea la carcaza vacía, el marco
         JPopupMenu popUpMenu = new JPopupMenu();
         //crea la línea de menú
-        JMenuItem menuItem1 = new JMenuItem("Visualizar la receta", new ImageIcon(getClass().getResource("/Imagenes/lupa.png")));
+        JMenuItem menuItem1 = new JMenuItem("Generar Receta.doc", new ImageIcon(getClass().getResource("/Imagenes/expediente de 20x20.png")));
 
-        menuItem1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(null, "Esperando un pdf", "Receta", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
+        
         //agrega la línea de menú al marco
         popUpMenu.add(menuItem1);
         //agrega el marco con la línea a la tabla
         jtTablaPorFormaDeCoccion.setComponentPopupMenu(popUpMenu);
+        
+        //Agrega la acción al popup
+        menuItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                RecetaData recetaD = new RecetaData();
+                Receta recetaAImprimir = recetaD.buscarRecetaPorTitulo((String)jtTablaPorFormaDeCoccion.getValueAt(jtTablaPorFormaDeCoccion.getSelectedRow(),0));
+                guardarWord(recetaAImprimir.toString());
+                
+            }
+        });
+        
+    }
+
+    public void guardarWord(final String linea){
+        
+        File archivo;
+        PrintWriter escribir;
+        
+        archivo = new File ("C:\\Users\\Adriana\\Desktop\\Receta.doc");
+        if (!archivo.exists()){
+            try{
+                archivo.createNewFile();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        } else {
+            try{
+                escribir = new PrintWriter(archivo,"utf-8");
+                escribir.println(linea);
+                escribir.close();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+        
     }
 
 }

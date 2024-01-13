@@ -1,8 +1,8 @@
 package Vistas;
 
-public class Principal extends javax.swing.JPanel {
+public class AdminPrincipal extends javax.swing.JPanel {
 
-    public Principal() {
+    public AdminPrincipal() {
         initComponents();
     }
 

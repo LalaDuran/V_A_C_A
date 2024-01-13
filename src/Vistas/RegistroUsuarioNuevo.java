@@ -1,13 +1,12 @@
 package Vistas;
 
-import AccesoADatos.Conexion;
+import AccesoADatos.*;
+import Entidades.*;
 import java.awt.Color;
-import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.*;
+import java.sql.Connection;
+import javax.swing.JOptionPane;
 
-public class Login extends javax.swing.JFrame {
+public class RegistroUsuarioNuevo extends javax.swing.JFrame {
 
     //Defino dos variables que identificarán la posición del cursor del mouse para poder arrastrar la ventana
     int xMouse, yMouse;
@@ -16,12 +15,10 @@ public class Login extends javax.swing.JFrame {
     Color violeta = new Color(153, 0, 153);
     Color naranja = new Color(255, 153, 0);
 
-    //defino la conexión
+    //atributo común a todos los Data
     private Connection con = null;
 
-    public static RegistroUsuarioNuevo registroUN;
-
-    public Login() {
+    public RegistroUsuarioNuevo() {
         initComponents();
 
         //Abre la ventana del menú en el centro
@@ -29,8 +26,8 @@ public class Login extends javax.swing.JFrame {
 
         //Establece el tamaño de la ventana al ejecutar
         this.setSize(860, 610);
-
-        //inicializa la conexión, la variable con
+        
+        //inicializa la conexión, la variable 'con'
         con = Conexion.getConexion();
     }
 
@@ -55,7 +52,7 @@ public class Login extends javax.swing.JFrame {
         jtfUsuario = new javax.swing.JTextField();
         jSeparador2 = new javax.swing.JSeparator();
         jpfContrasenia = new javax.swing.JPasswordField();
-        jbIniciarSesion = new javax.swing.JButton();
+        jbVolver = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -116,12 +113,12 @@ public class Login extends javax.swing.JFrame {
 
         jlIniciarSesion.setFont(new java.awt.Font("Roboto Medium", 1, 24)); // NOI18N
         jlIniciarSesion.setForeground(new java.awt.Color(0, 0, 0));
-        jlIniciarSesion.setText("INICIAR SESIÓN");
+        jlIniciarSesion.setText("REGISTRARSE");
         background.add(jlIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, -1, -1));
 
         jlContrasenia.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
         jlContrasenia.setForeground(new java.awt.Color(0, 0, 0));
-        jlContrasenia.setText("CONTRASEÑA (DNI)");
+        jlContrasenia.setText("CONTRASEÑA");
         background.add(jlContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, -1, 60));
 
         jlUsuario.setFont(new java.awt.Font("Roboto Black", 1, 18)); // NOI18N
@@ -145,7 +142,7 @@ public class Login extends javax.swing.JFrame {
         jpfContrasenia.setBackground(new java.awt.Color(255, 255, 255));
         jpfContrasenia.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jpfContrasenia.setForeground(new java.awt.Color(153, 153, 153));
-        jpfContrasenia.setText("************");
+        jpfContrasenia.setText("***************");
         jpfContrasenia.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jpfContrasenia.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -154,23 +151,23 @@ public class Login extends javax.swing.JFrame {
         });
         background.add(jpfContrasenia, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, 390, 60));
 
-        jbIniciarSesion.setBackground(new java.awt.Color(153, 0, 153));
-        jbIniciarSesion.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
-        jbIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
-        jbIniciarSesion.setText("INICIAR SESION");
-        jbIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbIniciarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+        jbVolver.setBackground(new java.awt.Color(153, 0, 153));
+        jbVolver.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
+        jbVolver.setForeground(new java.awt.Color(255, 255, 255));
+        jbVolver.setText("VOLVER");
+        jbVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbIniciarSesionMouseClicked(evt);
+                jbVolverMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jbIniciarSesionMouseEntered(evt);
+                jbVolverMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                jbIniciarSesionMouseExited(evt);
+                jbVolverMouseExited(evt);
             }
         });
-        background.add(jbIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 150, 80));
+        background.add(jbVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 140, 80));
 
         jbRegistrar.setBackground(new java.awt.Color(153, 0, 153));
         jbRegistrar.setFont(new java.awt.Font("Roboto Black", 1, 14)); // NOI18N
@@ -230,15 +227,12 @@ public class Login extends javax.swing.JFrame {
     private void jtfUsuarioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtfUsuarioMousePressed
         // Establece los campos por defecto
         if (jtfUsuario.getText().equals("Ingrese el nombre de usuario")) {
-
             jtfUsuario.setText("");
             jtfUsuario.setForeground(Color.black);
-
         }
         if (String.valueOf(jpfContrasenia.getPassword()).isEmpty()) {
             jpfContrasenia.setText("************");
             jpfContrasenia.setForeground(Color.gray);
-
         }
 
     }//GEN-LAST:event_jtfUsuarioMousePressed
@@ -256,81 +250,80 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jpfContraseniaMousePressed
 
-    private void jbIniciarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbIniciarSesionMouseClicked
-        String usuario = jtfUsuario.getText();
-
-        String DNI = String.valueOf(jpfContrasenia.getPassword());
-        int dni = -1;
-
-        if (jtfUsuario.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete los campos");
-
-        } else {
-
-            if (DNI.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Ingrese un DNI válido");
-
-            } else {
-                dni = Integer.parseInt(DNI);
-
-            }
-
-            try {
-                String sql = "SELECT * FROM usuario WHERE nombre = ? AND dni = ?";
-
-                PreparedStatement ps = con.prepareStatement(sql);
-
-                ps.setString(1, usuario);
-                ps.setInt(2, dni);
-
-                ResultSet rs = ps.executeQuery();
-
-                if (rs.next()) {
-                    JOptionPane.showMessageDialog(null, "Bienvenido/a");
-
-                    if (usuario.equals("admin")) {
-                        AdminMenuPrincipal mpa = new AdminMenuPrincipal();
-                        this.setVisible(false);
-                        mpa.setVisible(true);
-                    } else {
-                        MenuPrincipal mp = new MenuPrincipal();
-                        this.setVisible(false);
-                        mp.setVisible(true);
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "El usuario es incorrecto");
-                }
-
-            } catch (NumberFormatException nfe) {
-                JOptionPane.showMessageDialog(null, "Ingrese solo numeros en el DNI");
-            } catch (NullPointerException npe) {
-                JOptionPane.showMessageDialog(null, "El usuario no existe o los datos son incorrectos. Por favor, compruebe");
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        }
-
-    }//GEN-LAST:event_jbIniciarSesionMouseClicked
+    private void jbVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbVolverMouseClicked
+//        //Invisibiliza, deselecciona y cierra la ventana
+//        this.dispose();
+        Login login = new Login();
+        this.setVisible(false);
+        login.setVisible(true);
+    }//GEN-LAST:event_jbVolverMouseClicked
 
     private void jbRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrarMouseClicked
-        JOptionPane.showMessageDialog(null, "Cargando pagina de registro...");
+        UsuarioData usuarioD = new UsuarioData();
 
-        registroUN = new RegistroUsuarioNuevo(); //instancia la ventana (aún invis.)
-        registroUN.setVisible(true); //la hace visible
+        try {
+            //creamos las variables y asignamos los valores tipeados en la vista
+
+            if (jtfUsuario.getText().equals("Ingrese el nombre de usuario") || jpfContrasenia.equals("***************")) {
+                JOptionPane.showMessageDialog(null, "Complete los campos");
+            } else {
+                if (!validarString(jtfUsuario.getText().trim())) {
+                    JOptionPane.showMessageDialog(null, "El campo 'usuario' sólo acepta letras");
+
+                } else {
+                    String usuarioAGuardar = jtfUsuario.getText();
+                    int dniAGuardar = Integer.valueOf(jpfContrasenia.getText());
+                    boolean administradorAGuardar = false;
+
+                    //Instanciamos un usuario con los parámetros anteriores
+                    Usuario usu = new Usuario(usuarioAGuardar, dniAGuardar, administradorAGuardar);
+
+                    //declaramos una variable bandera por si ya existe el id tipeado en vista
+                    boolean existeID = false;
+
+                    //Recorremos la lista de usuarios existentes
+                    for (Usuario existingUsuario : usuarioD.listarUsuario()) {
+
+                        if (existingUsuario.getNombre().equals(usu.getNombre()) && existingUsuario.getDni() == usu.getDni()) {
+                            //Si existe el usuario, seteamos el id para poder acceder al método modificar; si no existe se activa la bandera más abajo 
+
+                            existeID = true;
+                            break;
+                        }
+                    }
+                    //Si existe el usuario usa el método modificarUsuario; si no, guardarUsuario
+                    if (existeID == true) {
+                        JOptionPane.showMessageDialog(null, "El usuario ya está registrado");
+                    } else {
+                        usuarioD.guardarUsuario(usu);
+                    }
+                }
+
+            }
+
+            //Limpiamos los textField luego de registrar.    
+            jtfUsuario.setText("Ingrese el nombre de usuario");
+            jtfUsuario.setForeground(Color.gray);
+
+            jpfContrasenia.setText("***************");
+            jpfContrasenia.setForeground(Color.gray);
+
+        } catch (NullPointerException ex) {
+            //Si algún campo está vacío
+            JOptionPane.showMessageDialog(null, "Complete todos los campos");
+        }
 
     }//GEN-LAST:event_jbRegistrarMouseClicked
 
-    private void jbIniciarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbIniciarSesionMouseEntered
-        jbIniciarSesion.setBackground(naranja);
-        jbIniciarSesion.setForeground(Color.black);
-    }//GEN-LAST:event_jbIniciarSesionMouseEntered
+    private void jbVolverMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbVolverMouseEntered
+        jbVolver.setBackground(naranja);
+        jbVolver.setForeground(Color.black);
+    }//GEN-LAST:event_jbVolverMouseEntered
 
-    private void jbIniciarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbIniciarSesionMouseExited
-        jbIniciarSesion.setBackground(violeta);
-        jbIniciarSesion.setForeground(Color.white);
-    }//GEN-LAST:event_jbIniciarSesionMouseExited
+    private void jbVolverMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbVolverMouseExited
+        jbVolver.setBackground(violeta);
+        jbVolver.setForeground(Color.white);
+    }//GEN-LAST:event_jbVolverMouseExited
 
     private void jbRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRegistrarMouseEntered
         jbRegistrar.setBackground(naranja);
@@ -359,20 +352,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuarioNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuarioNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuarioNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistroUsuarioNuevo.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new RegistroUsuarioNuevo().setVisible(true);
             }
         });
     }
@@ -381,8 +375,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JSeparator jSeparador1;
     private javax.swing.JSeparator jSeparador2;
-    private javax.swing.JButton jbIniciarSesion;
     private javax.swing.JButton jbRegistrar;
+    private javax.swing.JButton jbVolver;
     private javax.swing.JLabel jlContrasenia;
     private javax.swing.JLabel jlExit;
     private javax.swing.JLabel jlFotoCortada;
@@ -393,4 +387,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpfContrasenia;
     private javax.swing.JTextField jtfUsuario;
     // End of variables declaration//GEN-END:variables
+
+    public static boolean validarString(String datos) {
+        return datos.matches("[a-zA-Z]*");
+    }
+
 }

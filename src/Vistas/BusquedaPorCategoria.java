@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import java.io.*;
 
 public class BusquedaPorCategoria extends javax.swing.JPanel {
 
@@ -168,7 +169,7 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
                     esSinGluten = "Si";
                 }
 
-                modelo.addRow(new Object[]{aux.getTitulo(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion(),esSinGluten});
+                modelo.addRow(new Object[]{aux.getTitulo(), aux.getIngredientePrincipal(), aux.getTipoDeComida(), aux.getTipoDeCocina(), aux.getFormaDeCoccion(), esSinGluten});
             }
         }
 
@@ -202,7 +203,6 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
     private javax.swing.JTable jtTablaPorCategorias;
     // End of variables declaration//GEN-END:variables
 
- 
     private void cargarCategoriasAlComboBox() {
 
         jcbCategorias.addItem("Selecciona la categoría:");
@@ -225,7 +225,7 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
 
     }
 
-       private void armarTabla() {
+    private void armarTabla() {
         //Agregamos las cabeceras a la tabla
         modelo.addColumn("Título");
         modelo.addColumn("Ingrediente Ppal.");
@@ -292,24 +292,55 @@ public class BusquedaPorCategoria extends javax.swing.JPanel {
         }
     }
 
-    
     //para agregar la ventana pop-up a la tabla
     public void popUpTable() {
         //crea la carcaza vacía, el marco
         JPopupMenu popUpMenu = new JPopupMenu();
         //crea la línea de menú
-        JMenuItem menuItem1 = new JMenuItem("Visualizar la receta", new ImageIcon(getClass().getResource("/Imagenes/lupa.png")));
+        JMenuItem menuItem1 = new JMenuItem("Generar Receta.doc", new ImageIcon(getClass().getResource("/Imagenes/expediente de 20x20.png")));
 
-        menuItem1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                JOptionPane.showMessageDialog(null, "Esperando un pdf", "Receta", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
         //agrega la línea de menú al marco
         popUpMenu.add(menuItem1);
         //agrega el marco con la línea a la tabla
         jtTablaPorCategorias.setComponentPopupMenu(popUpMenu);
+
+        //Agrega la acción al popup
+        menuItem1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                RecetaData recetaD = new RecetaData();
+                Receta recetaAImprimir = recetaD.buscarRecetaPorTitulo((String) jtTablaPorCategorias.getValueAt(jtTablaPorCategorias.getSelectedRow(), 0));
+                guardarWord(recetaAImprimir.toString());
+                
+            }
+        });
+
+    }
+
+    public void guardarWord(final String linea) {
+
+        File archivo;
+        PrintWriter escribir;
+
+        archivo = new File("C:\\Users\\Adriana\\Desktop\\Receta.doc");
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else {
+            try {
+                escribir = new PrintWriter(archivo, "utf-8");
+                escribir.println(linea);
+                escribir.close();
+                JOptionPane.showMessageDialog(null, "La receta se guardó correctamente");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
     }
 
 }

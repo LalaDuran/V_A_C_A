@@ -1,7 +1,7 @@
 package Vistas;
 
-import AccesoADatos.RecetaData;
-import Entidades.Receta;
+import AccesoADatos.*;
+import Entidades.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-public class BusquedaPorGluten extends javax.swing.JPanel {
+public class AdminBusquedaPorGluten extends javax.swing.JPanel {
 
     private static Object PdfWriter;
 
@@ -25,7 +25,7 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
         }
     };
 
-    public BusquedaPorGluten() {
+    public AdminBusquedaPorGluten() {
 
         initComponents();
 
@@ -169,8 +169,7 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
             }
             
         }
-        
-        
+       
     }//GEN-LAST:event_jrbConGlutenActionPerformed
 
     private void jrbSinGlutenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbSinGlutenActionPerformed
@@ -207,7 +206,7 @@ public class BusquedaPorGluten extends javax.swing.JPanel {
     }//GEN-LAST:event_jbCerrarMouseExited
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-        MenuPrincipal.volverALaFotoDeFondo();
+        AdminMenuPrincipal.volverALaFotoDeFondo();
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     

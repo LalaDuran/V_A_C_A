@@ -128,22 +128,20 @@ public class Receta {
 
     @Override
     public String toString() {
-//        return titulo + '\n' + ingredientes + '\n' + '\n' + cuerpo +  '\n' + '\n' +"-  - - - - Ficha técnica - - - - -" + '\n'+ "¿Es libre de gluten?:  " + sinTACC + '\n'+
-//                      "Categoría:             " + categoria + '\n' +
-//                      "Ingrediente principal: " + ingredientePrincipal + '\n' +
-//                      "Horario de comida:     " + tipoDeComida + '\n' + 
-//                      "Forma de cocción:      " + formaDeCoccion + '\n' +
-//                      "Tipo de cocina:        " + tipoDeCocina;
-        
-        return titulo +
-                " " + ingredientes + " " + cuerpo + " " + "¿Es libre de gluten?:  " + sinTACC + " "+
+        //creo variable para que aparezca 'si' o 'no' en gluten y no 'true' o 'false'
+        String esLibreDeGluten = "SÍ";
+        if (sinTACC == false ){
+            esLibreDeGluten = "NO";
+        }
                 
-                      "Categoría:             " + categoria + " " +
-                      "Ingrediente principal: " + ingredientePrincipal + " " +
-                      "Horario de comida:     " + tipoDeComida + " " + 
-                      "Forma de cocción:      " + formaDeCoccion + " " +
+        return titulo + '\n' + '\n' + ingredientes + '\n' + '\n' + cuerpo +  '\n' + '\n' +"- - - - - Ficha técnica - - - - -" + '\n'+ "¿Es libre de gluten?:  " + esLibreDeGluten + '\n'+
+                      "Categoría:             " + categoria + '\n' +
+                      "Ingrediente principal: " + ingredientePrincipal + '\n' +
+                      "Horario de comida:     " + tipoDeComida + '\n' + 
+                      "Forma de cocción:      " + formaDeCoccion + '\n' +
                       "Tipo de cocina:        " + tipoDeCocina;
         
+
     }
 
     

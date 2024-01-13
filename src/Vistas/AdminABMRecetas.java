@@ -1,20 +1,16 @@
 package Vistas;
 
-import AccesoADatos.RecetaData;
+import AccesoADatos.*;
 import Entidades.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
-public class Administracion extends javax.swing.JPanel {
+public class AdminABMRecetas extends javax.swing.JPanel {
 
     Color violeta = new Color(153, 0, 153);
     Color naranja = new Color(255, 153, 0);
 
-    public Administracion() {
+    public AdminABMRecetas() {
 
         initComponents();
 
@@ -362,7 +358,7 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jrbSinGlutenActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        //Limpia la pantalla para cargar una mesa nueva
+        //Limpia la pantalla para cargar una receta nueva
         jtfIDReceta.setText("");
         jtfTitulo.setText("");
         jtaIngredientes.setText("");
@@ -379,7 +375,7 @@ public class Administracion extends javax.swing.JPanel {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCerrarActionPerformed
-       MenuPrincipal.volverALaFotoDeFondo();
+       AdminMenuPrincipal.volverALaFotoDeFondo();
     }//GEN-LAST:event_jbCerrarActionPerformed
 
     private void jbEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEliminarActionPerformed
@@ -396,10 +392,10 @@ public class Administracion extends javax.swing.JPanel {
                 Receta rec = new Receta();
                 RecetaData recetaD = new RecetaData();
 
-                //Buscamos la mesa con ese id y lo enviamos a la mesas ya creado
+                //Buscamos la receta con ese id y lo enviamos a la receta ya creada
                 rec = recetaD.buscarRecetaPorID(IDRecetaAEliminar);
 
-                //Eliminamos la receta llamando al método de mesaData
+                //Eliminamos la receta llamando al método de recetaData
                 recetaD.eliminarReceta(rec.getId_receta());
 
                 //Limpiamos los campos de la vista
@@ -456,13 +452,13 @@ public class Administracion extends javax.swing.JPanel {
             for (Receta existingReceta : recetaD.listarReceta()) {
 
                 if (existingReceta.getId_receta() == Integer.parseInt(jtfIDReceta.getText())) {
-                    //Si existe la mesa, seteamos el id para poder acceder al método modificar; si no existe se activa la bandera más abajo 
+                    //Si existe la receta, seteamos el id para poder acceder al método modificar; si no existe se activa la bandera más abajo 
                     recetaAGuardar.setId_receta(recetaD.buscarRecetaPorID(Integer.parseInt(jtfIDReceta.getText())).getId_receta());
                     existeID = true;
                     break;
                 }
             }
-            //Si existe la mesa usa el método modificarMesa; si no, guardarMesa
+            //Si existe la receta usa el método modificarReceta; si no, guardarReceta
             if (existeID == true) {
                 recetaD.modificarReceta(recetaAGuardar);
             } else {
