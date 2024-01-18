@@ -297,7 +297,7 @@ public class AdminBusquedaCombinada extends javax.swing.JPanel {
         }
                 
         if (jtTablaCombinada.getRowCount() == 0){
-            JOptionPane.showMessageDialog(this,"No existe receta con esa combinación");
+            JOptionPane.showMessageDialog(this,"No existe receta con esa combinación. Pruebe otra combinación.");
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
