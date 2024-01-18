@@ -297,7 +297,7 @@ public class BusquedaCombinada extends javax.swing.JPanel {
         }
                 
         if (jtTablaCombinada.getRowCount() == 0){
-            JOptionPane.showMessageDialog(this,"No existe receta con esa combinación");
+            JOptionPane.showMessageDialog(this,"No existe receta con esa combinación. Pruebe otras opciones!");
         }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
